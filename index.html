@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <script src="game.js"></script>
-    <div class="minesell">
-  <button onclick="mine();">Mine</button>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Mine N' Buy</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="loopGame();">
+	<script src="game.js">
+	</script>
+	<div class="minesell">
+		<button onclick="mine();">Mine</button>
   <div class="horDiv"></div>
   <button onclick="sell();">Sell</button>
   <p>Coins: <span id="money">0</span></p>
@@ -22,6 +25,10 @@
 <div class="Mines">
   <button id = "minebuy" onclick="buyNextMine();">Coal Mine (400 Coins)</button>
   <p>Ore Worth: <span id="minepower">1</span></p>
+</div>
+<div class="Vaults">
+  <button id = "vaultbuy" onclick="buyNextVault();">Stone Vault (100 Coins)</button>
+  <p>Vault Storage: <span id="minepower">200</span></p>
 </div>
   </body>
 </html>
