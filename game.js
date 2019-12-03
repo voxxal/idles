@@ -4,19 +4,19 @@ var ore = 0;
 
 
 //Pickaxes
-var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10],["Gold Pickaxe", 1500, 20], ["Diamond Pickaxe", 2500, 40], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var pickPower = 1;
 var nextPickNum = 0;
 var pickCost = 20;
 
 //Mines
-var mines = [["Coal Mine", 400 , 2],["Iron Mine", 2000 , 3],["Steel Mine", 10000 , 5], ["Gold Mine", 20000 , 10], ["Infinity Mine", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var mines = [["Coal Mine", 400 , 2],["Iron Mine", 2000 , 3],["Steel Mine", 10000 , 5], ["Gold Mine", 20000 , 10],["Diamond Mine", 30000, 25], ["Infinity Mine", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var sellPrice = 1;
 var nextMineNum = 0;
 var mineCost = 400;
 
 //Vaults
-var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000], ["Infinity Mine", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000] ["Infinity Vault", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
