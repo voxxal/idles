@@ -87,6 +87,7 @@ function buyNextVault(){
     document.getElementById("vaultbuy").innerHTML = vaults[nextVaultNum][0] +	"&#32;" + "&#40;" + vaults[nextVaultNum][1] + "&#32;" + "Coins" + "&#41;";
     document.getElementById("pickpower").innerHTML = pickPower;
     document.getElementById("overflow").innerHTML = vaultOverflow;
+     document.getElementById("vaultPower").innerHTML = vaultOverflow;
     document.getElementById("minepower").innerHTML = sellPrice;
     document.getElementById("ore").innerHTML = ore;
   document.getElementById("money").innerHTML = money;
