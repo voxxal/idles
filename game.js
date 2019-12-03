@@ -56,6 +56,7 @@ function loopGame(){
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
     pickPower = picks[nextPickNum][2];
+    pickCost = picks[nextPickNum][1];
     money -= pickCost;
     nextPickNum++;
     document.getElementById("pickaxebuy").innerHTML = picks[nextPickNum][0] +	"&#32;" + "&#40;" + picks[nextPickNum][1] + "&#32;" + "Coins" + "&#41;";
@@ -69,6 +70,7 @@ function buyNextPick(){
 function buyNextMine(){
   if (money >= mines[nextMineNum][1]){
     sellPrice = mines[nextMineNum][2];
+    mineCost = mines[nextMineNum][1];
     money -= mineCost;
     nextMineNum++;
     document.getElementById("minebuy").innerHTML = mines[nextMineNum][0] +	"&#32;" + "&#40;" + mines[nextMineNum][1] + "&#32;" + "Coins" + "&#41;";
@@ -82,6 +84,7 @@ function buyNextMine(){
 function buyNextVault(){
   if (money >= vaults[nextVaultNum][1]){
     vaultOverflow = vaults[nextVaultNum][2];
+    vaultCost = vaults[nextVaultNum][1];
     money -= vaultCost;
     nextVaultNum++;
     document.getElementById("vaultbuy").innerHTML = vaults[nextVaultNum][0] +	"&#32;" + "&#40;" + vaults[nextVaultNum][1] + "&#32;" + "Coins" + "&#41;";
