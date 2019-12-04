@@ -44,15 +44,18 @@ function sell(){
   document.getElementById("money").innerHTML = money;
   document.getElementById("ore").innerHTML = ore;
 }
-//Updating HTML [NOT WORKING]
+//Updating HTML
 function loopGame(){
   document.getElementById("ore").innerHTML = ore;
   document.getElementById("money").innerHTML = money;
   document.getElementById("pickpower").innerHTML = pickPower;
   document.getElementById("minepower").innerHTML = sellPrice;
+   document.getElementById("miners").innerHTML = miners;
   //loopGame();
 }
-
+(function() {
+  setInterval(function(){ loopGame() }, 500);
+})();
 //Buying new Pickaxes [WIP]
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
