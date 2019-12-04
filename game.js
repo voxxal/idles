@@ -1,8 +1,7 @@
 //Currency
 var money = 0;
 var ore = 0;
-var miners = 0;
-var minerCost = 20;
+
 
 //Pickaxes
 var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10],["Gold Pickaxe", 1500, 20], ["Diamond Pickaxe", 2500, 40], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
@@ -22,6 +21,10 @@ var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
 
+//Miners
+var drillCost = 60;
+var minerCost = 20;
+var ops = 0;
 
 //Mining Code
 function mine() {
@@ -50,9 +53,10 @@ function loopGame(){
   document.getElementById("money").innerHTML = money;
   document.getElementById("pickpower").innerHTML = pickPower;
   document.getElementById("minepower").innerHTML = sellPrice;
-   document.getElementById("miners").innerHTML = miners;
+   document.getElementById("ops").innerHTML = ops;
   //loopGame();
 }
+setInterval(loopGame, 100);
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
@@ -101,11 +105,18 @@ function buyNextVault(){
 
 function buyMiner(){
 if (money >=minerCost){
-  miners++;
+  ops++;
   money -= minerCost;
   minerCost *= 1.5;
   document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
-  document.getElementById("miners").innerHTML = miners;
+}
+function buyDrill(){
+if (money >=drillCost){
+  ops += 5
+  money -= minerCost;
+  minerCost *= 1.5;
+  document.getElementById("minerbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("ops").innerHTML = ops;
 }
 }
 var last = Date.now()
@@ -115,7 +126,7 @@ function handleInterval () {
   last = Date.now();
   if (last >= goal) {
     goal = goal + 1000;
-    ore += miners
+    ore += ops;
     document.getElementById("ore").innerHTML = ore;
     overflow();
   }
