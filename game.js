@@ -49,7 +49,7 @@ function loopGame(){
   document.getElementById("money").innerHTML = money;
   document.getElementById("pickpower").innerHTML = pickPower;
   document.getElementById("minepower").innerHTML = sellPrice;
-  loopGame();
+  //loopGame();
 }
 
 //Buying new Pickaxes [WIP]
@@ -97,3 +97,16 @@ function buyNextVault(){
     console.log(nextVaultNum);
   }
 }
+
+var last = Date.now()
+var goal = last + 1000;
+
+function handleInterval () {
+  last = Date.now();
+  if (last >= goal) {
+    goal = goal + 1000;
+    ore = ore + 1
+    document.getElementById("ore").innerHTML = ore;
+  }
+}
+setInterval(handleInterval, 100);
