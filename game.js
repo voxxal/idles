@@ -1,7 +1,8 @@
 //Currency
 var money = 0;
 var ore = 0;
-
+var miners = 0;
+var minerCost = 20;
 
 //Pickaxes
 var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10],["Gold Pickaxe", 1500, 20], ["Diamond Pickaxe", 2500, 40], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
@@ -98,6 +99,11 @@ function buyNextVault(){
   }
 }
 
+funtction buyminer(){
+  miners++;
+  money - minerCost;
+  minercost *= 1.5;
+}
 var last = Date.now()
 var goal = last + 1000;
 
@@ -105,7 +111,7 @@ function handleInterval () {
   last = Date.now();
   if (last >= goal) {
     goal = goal + 1000;
-    ore = ore + 1
+    ore += miners
     document.getElementById("ore").innerHTML = ore;
   }
 }
