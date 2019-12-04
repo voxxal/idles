@@ -29,7 +29,6 @@ function mine() {
   document.getElementById("money").innerHTML = money;
   document.getElementById("ore").innerHTML = ore;
   overflow();
-  loopy();
 }
 function overflow(){
   if (vaultOverflow <= ore) {
