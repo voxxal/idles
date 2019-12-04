@@ -54,7 +54,6 @@ function loopGame(){
    document.getElementById("miners").innerHTML = miners;
   //loopGame();
 }
-setInterval(loopGame, 500);
 //Buying new Pickaxes 
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
