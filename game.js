@@ -56,7 +56,7 @@ function loopGame(){
    document.getElementById("ops").innerHTML = ops;
   //loopGame();
 }
-setInterval(loopGame, 100);
+//setInterval(loopGame, 100);
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
@@ -113,8 +113,8 @@ if (money >=minerCost){
 function buyDrill(){
 if (money >=drillCost){
   ops += 5
-  money -= minerCost;
-  minerCost *= 1.5;
+  money -= drillCost;
+  drillCost *= 1.5;
   document.getElementById("minerbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("ops").innerHTML = ops;
 }
