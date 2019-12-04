@@ -53,7 +53,7 @@ function loopGame(){
    document.getElementById("miners").innerHTML = miners;
   //loopGame();
 }
-//Buying new Pickaxes 
+//Buying new Pickaxes
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
     pickPower = picks[nextPickNum][2];
@@ -99,11 +99,11 @@ function buyNextVault(){
   }
 }
 
-function buyminer(){
+function buyMiner(){
   miners++;
   money - minerCost;
   minercost *= 1.5;
-  document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minercost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("miners").innerHTML = miners;
 }
 var last = Date.now()
@@ -118,3 +118,4 @@ function handleInterval () {
   }
 }
 setInterval(handleInterval, 100);
+//did i commit
