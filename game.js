@@ -118,7 +118,7 @@ if (money >=drillCost){
   ops += 5
   money -= drillCost;
   drillCost *= 1.5;
-  document.getElementById("minerbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("drillbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("ops").innerHTML = ops;
   document.getElementById("money").innerHTML = money;
 }
