@@ -108,6 +108,7 @@ if (money >=minerCost){
   ops++;
   money -= minerCost;
   minerCost *= 1.5;
+  document.getElementById("money").innerHTML = money;
   document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
 }
 function buyDrill(){
@@ -117,6 +118,7 @@ if (money >=drillCost){
   drillCost *= 1.5;
   document.getElementById("minerbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("ops").innerHTML = ops;
+  document.getElementById("money").innerHTML = money;
 }
 }
 var last = Date.now()
