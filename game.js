@@ -109,6 +109,7 @@ if (money >=minerCost){
   money -= minerCost;
   minerCost *= 1.5;
   document.getElementById("money").innerHTML = money;
+  document.getElementById("ops").innerHTML = ops;
   document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
 }
 }
