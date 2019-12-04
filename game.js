@@ -101,7 +101,7 @@ function buyNextVault(){
 
 function buyMiner(){
   miners++;
-  money - minerCost;
+  money -= minerCost;
   minercost *= 1.5;
   document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("miners").innerHTML = miners;
@@ -115,7 +115,7 @@ function handleInterval () {
     goal = goal + 1000;
     ore += miners
     document.getElementById("ore").innerHTML = ore;
+    overflow();
   }
 }
 setInterval(handleInterval, 100);
-//did i commit
