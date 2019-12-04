@@ -111,6 +111,7 @@ if (money >=minerCost){
   document.getElementById("money").innerHTML = money;
   document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
 }
+}
 function buyDrill(){
 if (money >=drillCost){
   ops += 5
