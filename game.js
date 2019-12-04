@@ -100,7 +100,7 @@ function buyNextVault(){
   }
 }
 
-funtction buyminer(){
+/*funtction buyminer(){
   miners++;
   money - minerCost;
   minercost *= 1.5;
@@ -118,4 +118,4 @@ function handleInterval () {
     document.getElementById("ore").innerHTML = ore;
   }
 }
-setInterval(handleInterval, 100);
+setInterval(handleInterval, 100);*/
