@@ -103,6 +103,8 @@ funtction buyminer(){
   miners++;
   money - minerCost;
   minercost *= 1.5;
+  document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minercost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("miners").innerHTML = miners;
 }
 var last = Date.now()
 var goal = last + 1000;
