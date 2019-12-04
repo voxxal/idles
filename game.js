@@ -29,6 +29,7 @@ function mine() {
   document.getElementById("money").innerHTML = money;
   document.getElementById("ore").innerHTML = ore;
   overflow();
+  loopy();
 }
 function overflow(){
   if (vaultOverflow <= ore) {
@@ -53,10 +54,10 @@ function loopGame(){
    document.getElementById("miners").innerHTML = miners;
   //loopGame();
 }
-(function() {
-  setInterval(function(){ loopGame() }, 500);
-})();
-//Buying new Pickaxes [WIP]
+function myFunction() {
+  setInterval(function(){ loopGame(); }, 3000);
+}
+//Buying new Pickaxes 
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
     pickPower = picks[nextPickNum][2];
