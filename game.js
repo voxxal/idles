@@ -23,6 +23,7 @@ var vaultCost = 100;
 
 //Miners
 var drillCost = 60;
+var latchCost = 120;
 var minerCost = 20;
 var ops = 0;
 
@@ -123,6 +124,16 @@ if (money >=drillCost){
   document.getElementById("money").innerHTML = money;
 }
 }
+function buyLatch(){
+if (money >= latchCost){
+  ops += 10
+  money -= latchCost;
+  latchCost *= 1.5;
+  document.getElementById("drillbuy").innerHTML ="Latch" +	"&#32;" + "&#40;" + latchCost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("ops").innerHTML = ops;
+  document.getElementById("money").innerHTML = money;
+}
+}
 var last = Date.now()
 var goal = last + 1000;
 
@@ -135,4 +146,4 @@ function handleInterval () {
     overflow();
   }
 }
-setInterval(handleInterval, 100);
+setInterval(handleInterval, 1000);
