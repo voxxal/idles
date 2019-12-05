@@ -5,3 +5,13 @@ div {
 .horDiv {
   margin: 1px;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  float: left;
+}
