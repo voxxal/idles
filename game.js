@@ -73,6 +73,7 @@ function buyNextPick(){
     console.log(nextPickNum);
   }
 }
+//Buying new Mines
 function buyNextMine(){
   if (money >= mines[nextMineNum][1]){
     sellPrice = mines[nextMineNum][2];
@@ -87,6 +88,7 @@ function buyNextMine(){
     console.log(nextMineNum);
   }
 }
+//Buying new Vaults
 function buyNextVault(){
   if (money >= vaults[nextVaultNum][1]){
     vaultOverflow = vaults[nextVaultNum][2];
