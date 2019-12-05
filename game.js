@@ -129,7 +129,7 @@ if (money >= latchCost){
   ops += 10
   money -= latchCost;
   latchCost *= 1.5;
-  document.getElementById("drillbuy").innerHTML ="Latch" +	"&#32;" + "&#40;" + latchCost + "&#32;" + "Coins" + "&#41;";
+  document.getElementById("latchbuy").innerHTML ="Latch" +	"&#32;" + "&#40;" + latchCost + "&#32;" + "Coins" + "&#41;";
   document.getElementById("ops").innerHTML = ops;
   document.getElementById("money").innerHTML = money;
 }
