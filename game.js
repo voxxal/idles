@@ -30,34 +30,54 @@ var ops = 0;
 //Mining Code
 function mine() {
   ore += pickPower;
-  document.getElementById("money").innerHTML = money;
-  document.getElementById("ore").innerHTML = ore;
+  updateView()
   overflow();
 }
 function overflow(){
   if (vaultOverflow <= ore) {
     ore = vaultOverflow;
-    document.getElementById("money").innerHTML = money;
-    document.getElementById("ore").innerHTML = ore;
+    updateView()
   }
 }
 //Selling Your Ore
 function sell(){
   money += sellPrice * ore;
   ore = 0;
-  document.getElementById("money").innerHTML = money;
-  document.getElementById("ore").innerHTML = ore;
+  updateView()
 }
 //Updating HTML
-function loopGame(){
-  document.getElementById("ore").innerHTML = ore;
-  document.getElementById("money").innerHTML = money;
-  document.getElementById("pickpower").innerHTML = pickPower;
-  document.getElementById("minepower").innerHTML = sellPrice;
-   document.getElementById("ops").innerHTML = ops;
-  //loopGame();
+function formatNumber(n){
+  // Use a function to format number so we can easily change it later (or based on user setting)
+  return n.toFixed();
 }
-//setInterval(loopGame, 100);
+function formatCost(item, cost){
+  // Use a function to format number so we can easily change it later (or based on user setting)
+  return item +	"&#32;" + "&#40;" + formatNumber(cost) + "&#32;" + "Coins" + "&#41;";
+}
+function setNumberValue(id, n){
+  // Set the innerHTML of the element with id=id to the formatted value
+  document.getElementById(id).innerHTML = formatNumber(n);
+}
+function setCostValue(id, item, cost){
+  document.getElementById(id).innerHTML = formatCost(item, cost);
+}
+function updateView(){
+  setNumberValue("ore", ore);
+  setNumberValue("money", money);
+  setNumberValue("pickpower", pickPower);
+  setNumberValue("overflow", vaultOverflow);
+  setNumberValue("vaultpower", vaultOverflow);
+  setNumberValue("minepower", sellPrice);
+  setNumberValue("ops", ops);
+  setCostValue("pickaxebuy", picks[nextPickNum][0], picks[nextPickNum][1]);
+  setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
+  setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
+  setCostValue("minerbuy", "Miner", minerCost);
+  setCostValue("drillbuy", "Drill", drillCost);
+  setCostValue("latchbuy", "Latch", latchCost);
+  //updateView();
+}
+//setInterval(updateView, 100);
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= picks[nextPickNum][1]){
@@ -65,11 +85,7 @@ function buyNextPick(){
     pickCost = picks[nextPickNum][1];
     money -= pickCost;
     nextPickNum++;
-    document.getElementById("pickaxebuy").innerHTML = picks[nextPickNum][0] +	"&#32;" + "&#40;" + picks[nextPickNum][1] + "&#32;" + "Coins" + "&#41;";
-    document.getElementById("pickpower").innerHTML = pickPower;
-    document.getElementById("minepower").innerHTML = sellPrice;
-    document.getElementById("ore").innerHTML = ore;
-    document.getElementById("money").innerHTML = money;
+    updateView();
     console.log(nextPickNum);
   }
 }
@@ -80,11 +96,7 @@ function buyNextMine(){
     mineCost = mines[nextMineNum][1];
     money -= mineCost;
     nextMineNum++;
-    document.getElementById("minebuy").innerHTML = mines[nextMineNum][0] +	"&#32;" + "&#40;" + mines[nextMineNum][1] + "&#32;" + "Coins" + "&#41;";
-    document.getElementById("pickpower").innerHTML = pickPower;
-    document.getElementById("minepower").innerHTML = sellPrice;
-    document.getElementById("ore").innerHTML = ore;
-  document.getElementById("money").innerHTML = money;
+    updateView();
     console.log(nextMineNum);
   }
 }
@@ -95,13 +107,7 @@ function buyNextVault(){
     vaultCost = vaults[nextVaultNum][1];
     money -= vaultCost;
     nextVaultNum++;
-    document.getElementById("vaultbuy").innerHTML = vaults[nextVaultNum][0] +	"&#32;" + "&#40;" + vaults[nextVaultNum][1] + "&#32;" + "Coins" + "&#41;";
-    document.getElementById("pickpower").innerHTML = pickPower;
-    document.getElementById("overflow").innerHTML = vaultOverflow;
-    document.getElementById("vaultpower").innerHTML = vaultOverflow;
-    document.getElementById("minepower").innerHTML = sellPrice;
-    document.getElementById("ore").innerHTML = ore;
-  document.getElementById("money").innerHTML = money;
+    updateView();
     console.log(nextVaultNum);
   }
 }
@@ -111,9 +117,7 @@ if (money >=minerCost){
   ops++;
   money -= minerCost;
   minerCost *= 1.5;
-  document.getElementById("money").innerHTML = money;
-  document.getElementById("ops").innerHTML = ops;
-  document.getElementById("minerbuy").innerHTML ="Miner" +	"&#32;" + "&#40;" + minerCost + "&#32;" + "Coins" + "&#41;";
+  updateView();
 }
 }
 function buyDrill(){
@@ -121,9 +125,7 @@ if (money >=drillCost){
   ops += 5
   money -= drillCost;
   drillCost *= 1.5;
-  document.getElementById("drillbuy").innerHTML ="Drill" +	"&#32;" + "&#40;" + drillCost + "&#32;" + "Coins" + "&#41;";
-  document.getElementById("ops").innerHTML = ops;
-  document.getElementById("money").innerHTML = money;
+  updateView();
 }
 }
 function buyLatch(){
@@ -131,9 +133,7 @@ if (money >= latchCost){
   ops += 10
   money -= latchCost;
   latchCost *= 1.5;
-  document.getElementById("latchbuy").innerHTML ="Latch" +	"&#32;" + "&#40;" + latchCost + "&#32;" + "Coins" + "&#41;";
-  document.getElementById("ops").innerHTML = ops;
-  document.getElementById("money").innerHTML = money;
+  updateView();
 }
 }
 var last = Date.now()
@@ -144,7 +144,7 @@ function handleInterval () {
   if (last >= goal) {
     goal = goal + 1000;
     ore += ops;
-    document.getElementById("ore").innerHTML = ore;
+    updateView();
     overflow();
   }
 }
