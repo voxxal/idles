@@ -1,6 +1,15 @@
 const standard = new ADNotations.StandardNotation();
 const scientific = new ADNotations.ScientificNotation();
 
+
+//                              _|      _|              _|  
+//     _|      _|     _|_|       _|  _|       _|_|_|   _|  
+//    _|      _|   _|    _|       _|       _|    _|   _|  
+//     _|  _|     _|    _|     _|  _|     _|    _|   _|  
+//      _|         _|_|     _|      _|     _|_|_|   _|  
+
+//Thank you for playing!
+                                                     
 //Currency
 var money = 0;
 var ore = 0;
@@ -29,6 +38,9 @@ var miners = 0;
 var minerPower = 1;
 var minerCost = 20;
 var ops = 0;
+
+//Mine upgrades!
+var energyUnlocked = false;
 
 //Mining Code
 function mine() {
@@ -63,16 +75,26 @@ function setCostValue(id, item, cost){
 function updateView(){
   setNumberValue("ore", ore , 2 , 2);
   setNumberValue("money", money , 2 , 2);
-  setNumberValue("pickpower", pickPower , 2 , 2);
+  setNumberValue("pickpower", pickPower);
   setNumberValue("overflow", vaultOverflow , 2 , 2);
-  setNumberValue("vaultpower", vaultOverflow , 2 , 2);
-  setNumberValue("minepower", sellPrice , 2 , 2);
+  setNumberValue("vaultpower", vaultOverflow);
+  setNumberValue("minepower", sellPrice);
   setNumberValue("ops", ops , 2 , 2);
   setCostValue("pickaxebuy", picks[nextPickNum][0], picks[nextPickNum][1]);
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
-    setNumberValue("miners", miners , 2 , 2);
+  setNumberValue("miners", miners);
+  if (nextPickNum = 7){
+    document.getElementById("pickaxebuy").disabled = true;
+  }
+  if (nextMineNum = 6){
+    document.getElementById("minebuy").disabled = true;
+  }
+   if (nextVaultNum = 6){
+    document.getElementById("vaultbuy").disabled = true;
+  }
+  overflow();
   //updateView();
 }
 //setInterval(updateView, 100);
