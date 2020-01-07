@@ -8,7 +8,9 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body onload="loopGame();">
+<body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"></script>
 	<script src="game.js">
 	</script>
 	<div class="minesell">
@@ -19,24 +21,23 @@
   <p>Ore: <span id="ore">0</span>/<span id="overflow">200</span></p>
 </div>
 <div class="pickaxe">
-  <button id = "pickaxebuy" onclick="buyNextPick();">Wood Pickaxe (20 Coins)</button>
+  <button id = "pickaxebuy" onclick="buyNextPick();">Upgrade Stick (20 Coins)</button>
   <p>Pickaxe Power: <span id="pickpower">1</span></p>
-</div>
-<div class="Mines">
-  <button id = "minebuy" onclick="buyNextMine();">Coal Mine (400 Coins)</button>
-  <p>Ore Worth: <span id="minepower">1</span></p>
 </div>
 <div class="Vaults">
   <button id = "vaultbuy" onclick="buyNextVault();">Stone Vault (100 Coins)</button>
   <p>Vault Storage: <span id="vaultpower">200</span></p>
 </div>
+<div class="Mines" id="Mines">
+  <button id = "minebuy" onclick="buyNextMine();">Coal Mine (400 Coins)</button>
+  <p>Ore Worth: <span id="minepower">1</span></p>
+</div>
 <div class="Miners">
 	<ul>
   <li><button id = "minerbuy" onclick="buyMiner();">Miner (20 Coins)</button>
-  <li><button id = "drillbuy" onclick="buyDrill();">Drill (60 Coins)</button>
-  <li><button id = "latchbuy" onclick="buyLatch();">Latch (120 Coins)</button>
 	</ul>
   <p>OPS: <span id="ops">0</span></p>
+  <p>Miners: <span id="miners">0</span></p>
 </div>
   </body>
 </html>
