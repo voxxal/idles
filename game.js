@@ -1,3 +1,6 @@
+const standard = new ADNotations.StandardNotation();
+const scientific = new ADNotations.ScientificNotation();
+
 //Currency
 var money = 0;
 var ore = 0;
@@ -46,17 +49,13 @@ function sell(){
   updateView()
 }
 //Updating HTML
-function formatNumber(n){
-  // Use a function to format number so we can easily change it later (or based on user setting)
-  return n.toFixed();
-}
 function formatCost(item, cost){
   // Use a function to format number so we can easily change it later (or based on user setting)
-  return item +	"&#32;" + "&#40;" + formatNumber(cost) + "&#32;" + "Coins" + "&#41;";
+  return item +	"&#32;" + "&#40;" + standard.format(cost) + "&#32;" + "Coins" + "&#41;";
 }
 function setNumberValue(id, n){
   // Set the innerHTML of the element with id=id to the formatted value
-  document.getElementById(id).innerHTML = formatNumber(n);
+  document.getElementById(id).innerHTML = standard.format(n);
 }
 function setCostValue(id, item, cost){
   document.getElementById(id).innerHTML = formatCost(item, cost);
