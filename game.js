@@ -55,7 +55,7 @@ function formatCost(item, cost){
 }
 function setNumberValue(id, n){
   // Set the innerHTML of the element with id=id to the formatted value
-  document.getElementById(id).innerHTML = standard.format(n);
+  document.getElementById(id).innerHTML = standard.format(n,2,2);
 }
 function setCostValue(id, item, cost){
   document.getElementById(id).innerHTML = formatCost(item, cost);
