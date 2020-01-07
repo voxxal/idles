@@ -25,8 +25,8 @@ var nextVaultNum = 0;
 var vaultCost = 100;
 
 //Miners
-var drillCost = 60;
-var latchCost = 120;
+var miners = 0;
+var minerPower = 1;
 var minerCost = 20;
 var ops = 0;
 
@@ -55,25 +55,24 @@ function formatCost(item, cost){
 }
 function setNumberValue(id, n){
   // Set the innerHTML of the element with id=id to the formatted value
-  document.getElementById(id).innerHTML = standard.format(n,2,2);
+  document.getElementById(id).innerHTML = standard.format(n);
 }
 function setCostValue(id, item, cost){
   document.getElementById(id).innerHTML = formatCost(item, cost);
 }
 function updateView(){
-  setNumberValue("ore", ore);
-  setNumberValue("money", money);
-  setNumberValue("pickpower", pickPower);
-  setNumberValue("overflow", vaultOverflow);
-  setNumberValue("vaultpower", vaultOverflow);
-  setNumberValue("minepower", sellPrice);
-  setNumberValue("ops", ops);
+  setNumberValue("ore", ore , 2 , 2);
+  setNumberValue("money", money , 2 , 2);
+  setNumberValue("pickpower", pickPower , 2 , 2);
+  setNumberValue("overflow", vaultOverflow , 2 , 2);
+  setNumberValue("vaultpower", vaultOverflow , 2 , 2);
+  setNumberValue("minepower", sellPrice , 2 , 2);
+  setNumberValue("ops", ops , 2 , 2);
   setCostValue("pickaxebuy", picks[nextPickNum][0], picks[nextPickNum][1]);
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
-  setCostValue("drillbuy", "Drill", drillCost);
-  setCostValue("latchbuy", "Latch", latchCost);
+    setNumberValue("miners", miners , 2 , 2);
   //updateView();
 }
 //setInterval(updateView, 100);
@@ -113,27 +112,13 @@ function buyNextVault(){
 
 function buyMiner(){
 if (money >=minerCost){
-  ops++;
+  miners++;
+  ops+=minerPower;
   money -= minerCost;
   minerCost *= 1.5;
   updateView();
 }
-}
-function buyDrill(){
-if (money >=drillCost){
-  ops += 5
-  money -= drillCost;
-  drillCost *= 1.5;
-  updateView();
-}
-}
-function buyLatch(){
-if (money >= latchCost){
-  ops += 10
-  money -= latchCost;
-  latchCost *= 1.5;
-  updateView();
-}
+
 }
 var last = Date.now()
 var goal = last + 1000;
