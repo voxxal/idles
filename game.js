@@ -22,7 +22,7 @@ var nextPickNum = 0;
 var pickCost = 20;
 
 //Mines
-var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 20000 , 30,15],["Diamond Mine", 30000, 50, 20], ["[LOCKED]", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
+var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 20000 , 30,15],["Diamond Mine", 30000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
 var sellPrice = 1;
 var toughness = 1;
 var nextMineNum = 0;
