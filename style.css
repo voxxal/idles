@@ -13,5 +13,6 @@ ul {
 }
 #upgrademenu{
   width:150px;
-  height:100px;
+  height:200px;
+  overflow:scroll;
 }
