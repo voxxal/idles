@@ -45,7 +45,7 @@ var energyUnlocked = false;
 
 //Mining Code
 function mine() {
-  ore += pickPower;
+  ore += pickPower/toughness;
   updateView()
   overflow();
 }
@@ -75,6 +75,7 @@ function setCostValue(id, item, cost){
 }
 function updateView(){
   setNumberValue("ore", ore , 2 , 2);
+  setNumberValue("toughness", toughness , 2 , 2);
   setNumberValue("money", money , 2 , 2);
   setNumberValue("pickpower", pickPower);
   setNumberValue("overflow", vaultOverflow , 2 , 2);
