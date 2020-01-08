@@ -2,9 +2,9 @@ const standard = new ADNotations.StandardNotation();
 const scientific = new ADNotations.ScientificNotation();
 
 
-//                              _|      _|              _|  
-//     _|      _|     _|_|       _|  _|       _|_|_|   _|  
-//    _|      _|   _|    _|       _|       _|    _|   _|  
+//                                _|      _|              _|  
+//      _|      _|     _|_|       _|  _|       _|_|_|   _|  
+//     _|      _|   _|    _|       _|       _|    _|   _|  
 //     _|  _|     _|    _|     _|  _|     _|    _|   _|  
 //      _|         _|_|     _|      _|     _|_|_|   _|  
 
@@ -22,8 +22,9 @@ var nextPickNum = 0;
 var pickCost = 20;
 
 //Mines
-var mines = [["Coal Mine", 400 , 2],["Iron Mine", 2000 , 3],["Steel Mine", 10000 , 5], ["Gold Mine", 20000 , 10],["Diamond Mine", 30000, 25], ["Infinity Mine", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 20000 , 30,15],["Diamond Mine", 30000, 50, 20], ["[LOCKED]", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
 var sellPrice = 1;
+var toughness = 1;
 var nextMineNum = 0;
 var mineCost = 400;
 
@@ -88,7 +89,7 @@ function updateView(){
   if (nextPickNum = 7){
     document.getElementById("pickaxebuy").disabled = true;
   }
-  if (nextMineNum = 6){
+  if (nextMineNum = 5){
     document.getElementById("minebuy").disabled = true;
   }
    if (nextVaultNum = 6){
@@ -113,6 +114,7 @@ function buyNextPick(){
 function buyNextMine(){
   if (money >= mines[nextMineNum][1]){
     sellPrice = mines[nextMineNum][2];
+    toughness = mines[nextMineNum][3];
     mineCost = mines[nextMineNum][1];
     money -= mineCost;
     nextMineNum++;
