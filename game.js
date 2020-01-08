@@ -86,7 +86,7 @@ function updateView(){
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
-  setNumberValue("miners", miners);
+  setNumberValue("miners", miners);/**
   if (nextPickNum = 7){
     document.getElementById("pickaxebuy").disabled = true;
   }
@@ -96,6 +96,7 @@ function updateView(){
    if (nextVaultNum = 6){
     document.getElementById("vaultbuy").disabled = true;
   }
+  **/
   overflow();
   //updateView();
 }
