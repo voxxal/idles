@@ -46,20 +46,20 @@ var energyUnlocked = false;
 //Mining Code
 function mine() {
   ore += pickPower/toughness;
-  updateView()
+  updateView();
   overflow();
 }
 function overflow(){
   if (vaultOverflow <= ore) {
     ore = vaultOverflow;
-    updateView()
+    updateView();
   }
 }
 //Selling Your Ore
 function sell(){
   money += sellPrice * ore;
   ore = 0;
-  updateView()
+  updateView();
 }
 //Updating HTML
 function formatCost(item, cost){
@@ -86,17 +86,18 @@ function updateView(){
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
-  setNumberValue("miners", miners);/**
-  if (nextPickNum = 7){
+  setNumberValue("miners", miners);
+  ops /= toughness
+  if (nextPickNum == 7){
     document.getElementById("pickaxebuy").disabled = true;
   }
-  if (nextMineNum = 5){
+  if (nextMineNum == 5){
     document.getElementById("minebuy").disabled = true;
   }
-   if (nextVaultNum = 6){
+   if (nextVaultNum == 6){
     document.getElementById("vaultbuy").disabled = true;
   }
-  **/
+  
   overflow();
   //updateView();
 }
