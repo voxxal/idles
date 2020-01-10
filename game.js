@@ -50,7 +50,7 @@ function mine() {
   overflow();
 }
 function overflow(){
-  if (vaultOverflow <= ore) {
+  if (vaultOverflow < ore) {
     ore = vaultOverflow;
     updateView();
   }
@@ -97,9 +97,6 @@ function updateView(){
    if (nextVaultNum == 6){
     document.getElementById("vaultbuy").disabled = true;
   }
-  
-  overflow();
-  //updateView();
 }
 //setInterval(updateView, 100);
 //Buying new Pickaxes
@@ -138,14 +135,13 @@ function buyNextVault(){
 }
 
 function buyMiner(){
-if (money >=minerCost){
-  miners++;
-  ops+=minerPower;
-  money -= minerCost;
-  minerCost *= 1.5;
-  updateView();
-}
-
+  if (money >=minerCost){
+    miners++;
+    ops+=minerPower;
+    money -= minerCost;
+    minerCost *= 1.5;
+    updateView();
+  }
 }
 var last = Date.now()
 var goal = last + 1000;
