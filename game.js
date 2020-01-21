@@ -137,7 +137,7 @@ function buyNextVault(){
 function buyMiner(){
   if (money >=minerCost){
     miners++;
-    ops = miners;
+    ops == miners;
     ops /= toughness;
     ops+=minerPower;
     money -= minerCost;
