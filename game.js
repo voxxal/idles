@@ -117,6 +117,8 @@ function buyNextMine(){
     toughness = mines[nextMineNum][3];
     mineCost = mines[nextMineNum][1];
     money -= mineCost;
+    ops = miners;
+    ops /= toughness;
     nextMineNum++;
     updateView();
     console.log(nextMineNum);
@@ -137,7 +139,7 @@ function buyNextVault(){
 function buyMiner(){
   if (money >=minerCost){
     miners++;
-    ops == miners;
+    ops = miners;
     ops /= toughness;
     ops+=minerPower;
     money -= minerCost;
