@@ -69,20 +69,20 @@ function formatCost(item, cost){
 }
 function setNumberValue(id, n){
   // Set the innerHTML of the element with id=id to the formatted value
-  document.getElementById(id).innerHTML = standard.format(n);
+  document.getElementById(id).innerHTML = standard.format(n,2,2);
 }
 function setCostValue(id, item, cost){
   document.getElementById(id).innerHTML = formatCost(item, cost);
 }
 function updateView(){
-  setNumberValue("ore", ore , 2 , 2);
-  setNumberValue("toughness", toughness , 2 , 2);
-  setNumberValue("money", money , 2 , 2);
+  setNumberValue("ore", ore);
+  setNumberValue("toughness", toughness);
+  setNumberValue("money", money);
   setNumberValue("pickpower", pickPower);
-  setNumberValue("overflow", vaultOverflow , 2 , 2);
+  setNumberValue("overflow", vaultOverflow);
   setNumberValue("vaultpower", vaultOverflow);
   setNumberValue("minepower", sellPrice);
-  setNumberValue("ops", ops , 2 , 2);
+  setNumberValue("ops", ops);
   setCostValue("pickaxebuy", picks[nextPickNum][0], picks[nextPickNum][1]);
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
