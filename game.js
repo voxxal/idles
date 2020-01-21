@@ -16,13 +16,14 @@ var ore = 0;
 
 
 //Pickaxes
+//Pick upgrade system coming soon
 var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10],["Gold Pickaxe", 1500, 20], ["Diamond Pickaxe", 2500, 40], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var pickPower = 1;
 var nextPickNum = 0;
 var pickCost = 20;
 
 //Mines
-var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 20000 , 30,15],["Diamond Mine", 30000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
+var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
 var sellPrice = 1;
 var toughness = 1;
 var nextMineNum = 0;
@@ -87,7 +88,6 @@ function updateView(){
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
   setNumberValue("miners", miners);
-  ops /= toughness
   if (nextPickNum == 7){
     document.getElementById("pickaxebuy").disabled = true;
   }
@@ -119,6 +119,8 @@ function buyNextMine(){
     money -= mineCost;
     nextMineNum++;
     updateView();
+    ops = miners;
+    ops /= toughness;
     console.log(nextMineNum);
   }
 }
