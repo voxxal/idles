@@ -81,6 +81,7 @@ function updateView(){
   setNumberValue("toughness", toughness);
   setNumberValue("money", money);
   setNumberValue("pickpower", pickPower);
+  setNumberValue("picklevel",pickLevel);
   setNumberValue("overflow", vaultOverflow);
   setNumberValue("vaultpower", vaultOverflow);
   setNumberValue("minepower", sellPrice);
