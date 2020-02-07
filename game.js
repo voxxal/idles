@@ -67,7 +67,7 @@ function sell(){
 //Updating HTML
 function formatCost(item, cost){
   // Use a function to format number so we can easily change it later (or based on user setting)
-  return item +	"&#32;" + "&#40;" + standard.format(cost) + "&#32;" + "Coins" + "&#41;";
+  return item +	"&#32;" + "&#40;" + standard.format(cost,2,2) + "&#32;" + "Coins" + "&#41;";
 }
 function setNumberValue(id, n){
   // Set the innerHTML of the element with id=id to the formatted value
