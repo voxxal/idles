@@ -2,14 +2,14 @@ const standard = new ADNotations.StandardNotation();
 const scientific = new ADNotations.ScientificNotation();
 
 
-//                                _|      _|              _|  
-//      _|      _|     _|_|       _|  _|       _|_|_|   _|  
-//     _|      _|   _|    _|       _|       _|    _|   _|  
-//     _|  _|     _|    _|     _|  _|     _|    _|   _|  
-//      _|         _|_|     _|      _|     _|_|_|   _|  
+//                                _|      _|              _|
+//      _|      _|     _|_|       _|  _|       _|_|_|   _|
+//     _|      _|   _|    _|       _|       _|    _|   _|
+//     _|  _|     _|    _|     _|  _|     _|    _|   _|
+//      _|         _|_|     _|      _|     _|_|_|   _|
 
 //Thank you for playing!
-                                                     
+
 //Currency
 var money = 0;
 var ore = 0;
@@ -17,10 +17,11 @@ var ore = 0;
 
 //Pickaxes
 //Pick upgrade system coming soon
-var picks = [["Wood Pickaxe", 20 , 2],["Stone Pickaxe", 100 , 3],["Iron Pickaxe", 500 , 5], ["Steel Pickaxe", 1000 , 10],["Gold Pickaxe", 1500, 20], ["Diamond Pickaxe", 2500, 40], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var picks = [[["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"]], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var pickPower = 1;
+var pickLevel = 1;
 var nextPickNum = 0;
-var pickCost = 20;
+var pickCost = 10;
 
 //Mines
 var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
@@ -42,6 +43,7 @@ var minerCost = 20;
 var ops = 0;
 
 //Mine upgrades!
+var area = 0;
 var energyUnlocked = false;
 
 //Mining Code
@@ -83,12 +85,12 @@ function updateView(){
   setNumberValue("vaultpower", vaultOverflow);
   setNumberValue("minepower", sellPrice);
   setNumberValue("ops", ops);
-  setCostValue("pickaxebuy", picks[nextPickNum][0], picks[nextPickNum][1]);
+  setCostValue("pickaxebuy", "Upgrade	&#32;" + picks[area][nextPickNum][0], pickCost);
   setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
   setNumberValue("miners", miners);
-  if (nextPickNum == 7){
+  if (nextPickNum == 6){
     document.getElementById("pickaxebuy").disabled = true;
   }
   if (nextMineNum == 5){
@@ -101,11 +103,13 @@ function updateView(){
 //setInterval(updateView, 100);
 //Buying new Pickaxes
 function buyNextPick(){
-  if (money >= picks[nextPickNum][1]){
-    pickPower = picks[nextPickNum][2];
-    pickCost = picks[nextPickNum][1];
+  if (money >= pickCost){
+    pickPower *= 1.4;
+    nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
-    nextPickNum++;
+    pickCost *= 1.1;
+    pickLevel++;
+    //if (nextPickNum == 6){nextPickNum...}
     updateView();
     console.log(nextPickNum);
   }
