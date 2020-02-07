@@ -31,7 +31,7 @@ var nextMineNum = 0;
 var mineCost = 400;
 
 //Vaults
-var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000] ["Infinity Vault", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Infinity Vault", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
@@ -97,7 +97,7 @@ function updateView(){
   if (nextMineNum == 5){
     document.getElementById("minebuy").disabled = true;
   }
-   if (nextVaultNum == 6){
+   if (nextVaultNum == 5){
     document.getElementById("vaultbuy").disabled = true;
   }
 }
@@ -105,10 +105,10 @@ function updateView(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= pickCost){
-    pickPower *= 1.2;
+    pickPower *= 1.1;
     nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
-    pickCost *= 1.1;
+    pickCost *= 1.15;
     pickLevel++;
     //if (nextPickNum == 6){nextPickNum...}
     updateView();
