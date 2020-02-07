@@ -102,7 +102,7 @@ function updateView(){
     disable("minebuy");
   }
    if (nextVaultNum == 5){
-    disable("vaultbuy"
+    disable("vaultbuy");
   }
 }
 //setInterval(updateView, 100);
