@@ -10,55 +10,55 @@ const scientific = new ADNotations.ScientificNotation();
 
 //Thank you for playing!
 
-//Currency
+//Currency//
 var money = 0;
 var ore = 0;
 
 
-//Pickaxes
-//Pick upgrade system coming soon
+//Pickaxes//
 var picks = [[["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"]], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var pickPower = 1;
 var pickLevel = 1;
 var nextPickNum = 0;
 var pickCost = 10;
 
-//Mines
+//Mines//
 var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
 var sellPrice = 1;
 var toughness = 1;
 var nextMineNum = 0;
 var mineCost = 400;
 
-//Vaults
+//Vaults//
 var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Infinity Vault", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
 var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
 
-//Miners
+//Miners//
 var miners = 0;
 var minerPower = 1;
 var minerCost = 20;
 var ops = 0;
 
-//Mine upgrades!
+//Mine upgrades!//
 var area = 0;
 var energyUnlocked = false;
 
-//Mining Code
+//Mining Code//
 function mine() {
   ore += pickPower/toughness;
   updateView();
   overflow();
 }
+//Vault Stuff//
 function overflow(){
   if (vaultOverflow < ore) {
     ore = vaultOverflow;
     updateView();
   }
 }
-//Selling Your Ore
+//Selling Your Ore (since 2019)//
 function sell(){
   money += sellPrice * ore;
   ore = 0;
@@ -76,6 +76,10 @@ function setNumberValue(id, n){
 function setCostValue(id, item, cost){
   document.getElementById(id).innerHTML = formatCost(item, cost);
 }
+function disable(id){
+  document.getElementById(id).disabled = true;
+}
+
 function updateView(){
   setNumberValue("ore", ore);
   setNumberValue("toughness", toughness);
@@ -91,11 +95,11 @@ function updateView(){
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
   setNumberValue("miners", miners);
-  if (nextPickNum == 6){
-    document.getElementById("pickaxebuy").disabled = true;
+  if (nextPickNum == 5){
+    disable("pickaxebuy");
   }
   if (nextMineNum == 5){
-    document.getElementById("minebuy").disabled = true;
+    disable("minebuy");
   }
    if (nextVaultNum == 5){
     document.getElementById("vaultbuy").disabled = true;
@@ -112,7 +116,7 @@ function buyNextPick(){
     pickLevel++;
     //if (nextPickNum == 6){nextPickNum...}
     updateView();
-    console.log(nextPickNum);
+    console.log(pickLevel);
   }
 }
 //Buying new Mines
