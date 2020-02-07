@@ -23,14 +23,14 @@ var nextPickNum = 0;
 var pickCost = 10;
 
 //Mines//
-var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Comming out soon!", 999999999999999999999999999999999999999999999999999999999999999999, 1000,1000]]
+var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]]
 var sellPrice = 1;
 var toughness = 1;
 var nextMineNum = 0;
 var mineCost = 400;
 
 //Vaults//
-var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Infinity Vault", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]]
 var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
@@ -98,11 +98,11 @@ function updateView(){
   if (nextPickNum == 5){
     disable("pickaxebuy");
   }
-  if (nextMineNum == 5){
+  if (nextMineNum == 4){
     disable("minebuy");
   }
    if (nextVaultNum == 5){
-    document.getElementById("vaultbuy").disabled = true;
+    disable("vaultbuy"
   }
 }
 //setInterval(updateView, 100);
@@ -112,7 +112,7 @@ function buyNextPick(){
     pickPower *= 1.1;
     nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
-    pickCost *= 1.15;
+    pickCost *= 1.125;
     pickLevel++;
     //if (nextPickNum == 6){nextPickNum...}
     updateView();
