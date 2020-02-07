@@ -104,7 +104,7 @@ function updateView(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= pickCost){
-    pickPower *= 1.4;
+    pickPower *= 1.2;
     nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
     pickCost *= 1.1;
