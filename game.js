@@ -44,6 +44,17 @@ var ops = 0;
 //Mine upgrades!//
 var area = 0;
 var energyUnlocked = false;
+//Upgrades//
+var pickMultiply = 1;
+var mineMultiply = 1;
+var upgrades = [
+  {
+    "name":"Power Pickaxe",
+    "discription":"Feel the Power! Pickaxe Power increased by 100%",
+    "cost":"1500",
+    "buff":"pickMultiply*2"
+  }
+]
 
 //Mining Code//
 function mine() {
@@ -109,7 +120,7 @@ function updateView(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= pickCost){
-    pickPower *= 1.1;
+    pickPower *= 1.1 * pickMultiply;
     nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
     pickCost *= 1.125;
@@ -168,3 +179,12 @@ function handleInterval () {
   }
 }
 setInterval(handleInterval, 1000);
+
+
+// UPGRADE SYSTEM
+function createUpgrade(id) {
+  var newUpgrade = document.createElement("button");
+  var buttonContent = document.createTextNode(upgrade[id].name <br> upgrade[id].discription <br> upgrade[id].cost "Coins");
+  newUpgrade.appendChild(buttonContent);
+  document.getElementById("upgrademenu") .appendChild(newUpgrade);
+}
