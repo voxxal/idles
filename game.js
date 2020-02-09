@@ -184,7 +184,7 @@ setInterval(handleInterval, 1000);
 // UPGRADE SYSTEM
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(upgrade[id].name <br> upgrade[id].discription <br> upgrade[id].cost + "Coins");
+  //var buttonContent = document.createTextNode(upgrade[id].name <br> upgrade[id].discription <br> upgrade[id].cost + "Coins");
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
 }
