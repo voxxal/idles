@@ -52,7 +52,8 @@ var upgrades = [
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
     "cost":"1500",
-    "buff":pickMultiply*=2
+    "buffType":"pickaxe",
+    "buffAmount":2
   }
 ]
 
@@ -195,7 +196,11 @@ function createUpgrade(id) {
 function buyUpgrade(id) {
   if(money >= upgrades[id].cost){
   money -= upgrades[id].cost;
-  upgrades[id].buff;
+  switch(upgrades[id].buffType) {
+    case 'pickaxe':
+        pickMultiply *= upgrades[id].buffAmount;
+        break;
+}
   let buttonElement = document.getElementsByClassName('upgradeButton')[0];
   buttonElement.parentNode.removeChild(buttonElement);
 }
