@@ -52,7 +52,7 @@ var upgrades = [
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
     "cost":"1500",
-    "buff":pickMultiply*2
+    "buff":pickMultiply*=2
   }
 ]
 
