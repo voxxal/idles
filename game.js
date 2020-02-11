@@ -52,7 +52,7 @@ var upgrades = [
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
     "cost":"1500",
-    "buff":"pickMultiply*2"
+    "buff":pickMultiply*2
   }
 ]
 
@@ -184,7 +184,19 @@ setInterval(handleInterval, 1000);
 // UPGRADE SYSTEM
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  //var buttonContent = document.createTextNode(upgrade[id].name <br> upgrade[id].discription <br> upgrade[id].cost + "Coins");
+  var buttonContent = document.createTextNode(upgrades[id].name + "<br>" + upgrades[id].discription + "<br>" + upgrades[id].cost + "Coins");
+  newUpgrade.className = 'upgradeButton';
+  newUpgrade.onclick = function() {
+    buyupgrade(id);
+  }
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
+}
+function buyUpgrade(id) {
+  if(money >= upgrades[id].cost){
+  money -= upgrades[id].cost;
+  upgrades[id].buff;
+  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
+  buttonElement.parentNode.removeChild(buttonElement);
+}
 }
