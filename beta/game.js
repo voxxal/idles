@@ -9,6 +9,7 @@ const scientific = new ADNotations.ScientificNotation();
 //      _|         _|_|     _|      _|     _|_|_|   _|
 
 //Thank you for playing!
+//This is a BETA Version. Very Unstable
 
 //Currency//
 var money = 0;
@@ -107,7 +108,7 @@ function updateView(){
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
   setNumberValue("miners", miners);
-  if (nextPickNum == 5){
+  if (nextPickNum == 6){
     disable("pickaxebuy");
   }
   if (nextMineNum == 4){
@@ -122,7 +123,7 @@ function updateView(){
 function buyNextPick(){
   if (money >= pickCost){
     pickPower *= 1.1 * pickMultiply;
-    nextPickNum = Math.trunc(pickLevel/25);
+    nextPickNum = Math.trunc(pickLevel/25)-1;
     money -= pickCost;
     pickCost *= 1.125;
     pickLevel++;
@@ -201,7 +202,7 @@ function buyUpgrade(id) {
         pickMultiply *= upgrades[id].buffAmount;
         break;
 }
-  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
-  buttonElement.parentNode.removeChild(buttonElement);
+//  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
+//  buttonElement.parentNode.removeChild(buttonElement);
 }
 }
