@@ -196,13 +196,13 @@ function createUpgrade(id) {
 }
 function buyUpgrade(id) {
   if(money >= upgrades[id].cost){
-  money -= upgrades[id].cost;
-  switch(upgrades[id].buffType) {
-    case 'pickaxe':
+    money -= upgrades[id].cost;
+    switch(upgrades[id].buffType) {
+      case 'pickaxe':
         pickMultiply *= upgrades[id].buffAmount;
-        break;
-}
+      break;
+   }
 //  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
 //  buttonElement.parentNode.removeChild(buttonElement);
-}
+ }
 }
