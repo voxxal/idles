@@ -52,7 +52,7 @@ var upgrades = [
   {
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
-    "cost":"1500",
+    "cost":1500,
     "buffType":"pickaxe",
     "buffAmount":2
   }
@@ -202,7 +202,7 @@ function buyUpgrade(id) {
         pickMultiply *= upgrades[id].buffAmount;
       break;
    }
-//  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
-//  buttonElement.parentNode.removeChild(buttonElement);
+  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
+  buttonElement.parentNode.removeChild(buttonElement);
  }
 }
