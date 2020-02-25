@@ -206,3 +206,4 @@ function buyUpgrade(id) {
   buttonElement.parentNode.removeChild(buttonElement);
  }
 }
+createUpgrade(0);
