@@ -16,7 +16,7 @@ var ore = 0;
 
 
 //Pickaxes//
-var picks = [[["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"]], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]];
+var picks = [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ];
 var pickPower = 1;
 var pickLevel = 1;
 var nextPickNum = 0;
@@ -188,7 +188,7 @@ function buyUpgrade(id) {
       case 'pickaxe':
         pickMultiply *= upgrades[id].buffAmount;
       break;
-   };
+   }
   let buttonElement = document.getElementsByClassName('upgradeButton')[0];
   buttonElement.parentNode.removeChild(buttonElement);
  }
