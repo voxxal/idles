@@ -184,16 +184,6 @@ setInterval(handleInterval, 1000);
 
 
 // UPGRADE SYSTEM
-function createUpgrade(id) {
-  var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(upgrades[id].name + "<br>" + upgrades[id].discription + "<br>" + upgrades[id].cost + "Coins");
-  newUpgrade.className = 'upgradeButton';
-  newUpgrade.onclick = function() {
-    buyUpgrade(id);
-  }
-  newUpgrade.appendChild(buttonContent);
-  document.getElementById("upgrademenu").appendChild(newUpgrade);
-}
 function buyUpgrade(id) {
   if(money >= upgrades[id].cost){
     money -= upgrades[id].cost;
@@ -205,4 +195,15 @@ function buyUpgrade(id) {
   let buttonElement = document.getElementsByClassName('upgradeButton')[0];
   buttonElement.parentNode.removeChild(buttonElement);
  }
+}
+
+function createUpgrade(id) {
+  var newUpgrade = document.createElement("button");
+  var buttonContent = document.createTextNode(upgrades[id].name + "<br>" + upgrades[id].discription + "<br>" + upgrades[id].cost + "Coins");
+  newUpgrade.className = 'upgradeButton';
+  newUpgrade.onclick = function() {
+    buyUpgrade(id);
+  }
+  newUpgrade.appendChild(buttonContent);
+  document.getElementById("upgrademenu").appendChild(newUpgrade);
 }
