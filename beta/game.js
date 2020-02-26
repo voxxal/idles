@@ -192,7 +192,7 @@ function createUpgrade(id) {
     buyUpgrade(id);
   }
   newUpgrade.appendChild(buttonContent);
-  document.getElementById("upgrademenu") .appendChild(newUpgrade);
+  document.getElementById("upgrademenu").appendChild(newUpgrade);
 }
 function buyUpgrade(id) {
   if(money >= upgrades[id].cost){
@@ -206,4 +206,3 @@ function buyUpgrade(id) {
   buttonElement.parentNode.removeChild(buttonElement);
  }
 }
-createUpgrade(0);
