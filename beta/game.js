@@ -107,13 +107,13 @@ function updateView(){
   setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
   setCostValue("minerbuy", "Miner", minerCost);
   setNumberValue("miners", miners);
-  if (nextPickNum == 6){
+  if (nextPickNum === 6){
     disable("pickaxebuy");
   }
-  if (nextMineNum == 4){
+  if (nextMineNum === 4){
     disable("minebuy");
   }
-   if (nextVaultNum == 5){
+   if (nextVaultNum === 5){
     disable("vaultbuy");
   }
 }
