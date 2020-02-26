@@ -4,7 +4,6 @@ const scientific = new ADNotations.ScientificNotation();
 
 //                                _|      _|              _|
 //      _|      _|     _|_|       _|  _|       _|_|_|   _|
-//     _|      _|   _|    _|       _|       _|    _|   _|
 //     _|  _|     _|    _|     _|  _|     _|    _|   _|
 //      _|         _|_|     _|      _|     _|_|_|   _|
 
@@ -17,21 +16,21 @@ var ore = 0;
 
 
 //Pickaxes//
-var picks = [[["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"]], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]]
+var picks = [[["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"]], ["Infinity Pickaxe", 999999999999999999999999999999999999999999999999999999999999999999, 1000]];
 var pickPower = 1;
 var pickLevel = 1;
 var nextPickNum = 0;
 var pickCost = 10;
 
 //Mines//
-var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]]
+var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]];
 var sellPrice = 1;
 var toughness = 1;
 var nextMineNum = 0;
 var mineCost = 400;
 
 //Vaults//
-var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]]
+var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]];
 var vaultOverflow = 200;
 var nextVaultNum = 0;
 var vaultCost = 100;
@@ -56,7 +55,7 @@ var upgrades = [
     "buffType":"pickaxe",
     "buffAmount":2
   }
-]
+]; 
 
 //Mining Code//
 function mine() {
@@ -129,7 +128,6 @@ function buyNextPick(){
     pickLevel++;
     //if (nextPickNum == 6){nextPickNum...}
     updateView();
-    console.log(pickLevel);
   }
 }
 //Buying new Mines
@@ -143,7 +141,7 @@ function buyNextMine(){
     ops /= toughness;
     nextMineNum++;
     updateView();
-    console.log(nextMineNum);
+
   }
 }
 //Buying new Vaults
@@ -154,7 +152,6 @@ function buyNextVault(){
     money -= vaultCost;
     nextVaultNum++;
     updateView();
-    console.log(nextVaultNum);
   }
 }
 
@@ -168,7 +165,7 @@ function buyMiner(){
     updateView();
   }
 }
-var last = Date.now()
+var last = Date.now();
 var goal = last + 1000;
 
 function handleInterval () {
@@ -191,7 +188,7 @@ function buyUpgrade(id) {
       case 'pickaxe':
         pickMultiply *= upgrades[id].buffAmount;
       break;
-   }
+   };
   let buttonElement = document.getElementsByClassName('upgradeButton')[0];
   buttonElement.parentNode.removeChild(buttonElement);
  }
