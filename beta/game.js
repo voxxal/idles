@@ -187,7 +187,7 @@ function buyUpgrade(id) {
         pickMultiply *= upgrades[id].buffAmount;
       break;
    }
-  let buttonElement = document.getElementsByClassName('upgradeButton')[0];
+  let buttonElement = document.getElementsByClassName("upgradeButton")[0];
   buttonElement.parentNode.removeChild(buttonElement);
  }
 }
@@ -195,7 +195,7 @@ function buyUpgrade(id) {
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
   var buttonContent = document.createTextNode(upgrades[id].name + "<br>" + upgrades[id].discription + "<br>" + upgrades[id].cost + "Coins");
-  newUpgrade.className = 'upgradeButton';
+  newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
     buyUpgrade(id);
   }
