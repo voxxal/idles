@@ -56,26 +56,6 @@ var upgrades = [
     "buffAmount":2
   }
 ]; 
-
-//Mining Code//
-function mine() {
-  ore += pickPower/toughness;
-  updateView();
-  overflow();
-}
-//Vault Stuff//
-function overflow(){
-  if (vaultOverflow < ore) {
-    ore = vaultOverflow;
-    updateView();
-  }
-}
-//Selling Your Ore (since 2019)//
-function sell(){
-  money += sellPrice * ore;
-  ore = 0;
-  updateView();
-}
 //Updating HTML
 function formatCost(item, cost){
   // Use a function to format number so we can easily change it later (or based on user setting)
@@ -117,7 +97,25 @@ function updateView(){
     disable("vaultbuy");
   }
 }
-//setInterval(updateView, 100);
+//Mining Code//
+function mine() {
+  ore += pickPower/toughness;
+  updateView();
+  overflow();
+}
+//Vault Stuff//
+function overflow(){
+  if (vaultOverflow < ore) {
+    ore = vaultOverflow;
+    updateView();
+  }
+}
+//Selling Your Ore (since 2019)//
+function sell(){
+  money += sellPrice * ore;
+  ore = 0;
+  updateView();
+}
 //Buying new Pickaxes
 function buyNextPick(){
   if (money >= pickCost){
