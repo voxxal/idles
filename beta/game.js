@@ -197,6 +197,8 @@ function createUpgrade(id) {
   var buttonContent = document.createTextNode(upgrades[id].name + "\n" + upgrades[id].discription + "\n" + upgrades[id].cost + "Coins");
   newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
+    buyUpgrade(id);
+    return false;
   }
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
