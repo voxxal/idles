@@ -120,7 +120,7 @@ function sell(){
 function buyNextPick(){
   if (money >= pickCost){
     pickPower *= 1.1 * pickMultiply;
-    nextPickNum = Math.trunc(pickLevel/25)-1;
+    nextPickNum = Math.trunc(pickLevel/25);
     money -= pickCost;
     pickCost *= 1.125;
     pickLevel++;
