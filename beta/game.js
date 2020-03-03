@@ -55,7 +55,7 @@ var upgrades = [
     "buffType":"pickaxe",
     "buffAmount":2
   }
-]; 
+];
 //Updating HTML
 function formatCost(item, cost){
   // Use a function to format number so we can easily change it later (or based on user setting)
@@ -194,7 +194,7 @@ function buyUpgrade(id) {
 
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(upgrades[id].name + \n + upgrades[id].discription + \n + upgrades[id].cost + "Coins");
+  var buttonContent = document.createTextNode(upgrades[id].name + "\n" + upgrades[id].discription + "\n" + upgrades[id].cost + "Coins");
   newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
   }
