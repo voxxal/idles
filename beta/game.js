@@ -28,7 +28,7 @@ var game = {
  "mineCost" : 400,
 
 //Vaults//
-"vaults" ; [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
+"vaults" : [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
 "vaultOverflow" : 200,
 "nextVaultNum" : 0,
 "vaultCost" : 100,
