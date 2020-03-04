@@ -114,7 +114,7 @@ function updateView(){
     disable("vaultbuy");
   }
   for (var i = 0; i < game.upgrades.length; i++) {
-    if(money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
+    if(game.money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
       createUpgrade(i);
       game.upgrades[i].created = true;
     }
