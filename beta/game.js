@@ -11,43 +11,40 @@ const scientific = new ADNotations.ScientificNotation();
 //This is a BETA Version. Very Unstable
 
 //Currency//
-var money = 0;
-var ore = 0;
-
-
+var game = {
+"money" = 0,
+ "ore" = 0,
 //Pickaxes//
-var picks = [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ];
-var pickPower = 1;
-var pickLevel = 1;
-var nextPickNum = 0;
-var pickCost = 10;
-
+ "picks" = [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ],
+ "pickPower" = 1,
+ "pickLevel" = 1,
+ "nextPickNum" = 0,
+ "pickCost" = 10,
 //Mines//
-var mines = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]];
-var sellPrice = 1;
-var toughness = 1;
-var nextMineNum = 0;
-var mineCost = 400;
+  "mines" = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]],
+  "sellPrice" = 1,
+  "toughness" = 1,
+"nextMineNum" = 0,
+ "mineCost" = 400,
 
 //Vaults//
-var vaults = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]];
-var vaultOverflow = 200;
-var nextVaultNum = 0;
-var vaultCost = 100;
+"vaults" = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
+"vaultOverflow" = 200,
+"nextVaultNum" = 0,
+"vaultCost" = 100,
 
 //Miners//
-var miners = 0;
-var minerPower = 1;
-var minerCost = 20;
-var ops = 0;
+"miners" = 0,
+"minerPower" = 1,
+"minerCost" = 20,
+"ops" = 0,
 
 //Upgrades//
-var area = 0;
-var energyUnlocked = false;
-var pickMultiply = 1;
-var mineMultiply = 1;
-var toughnessMultiply = 1;
-var upgrades = [
+"area" = 0,
+"pickMultiply" = 1,
+"mineMultiply" = 1,
+"toughnessMultiply" = 1,
+"upgrades" = [
   {
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
@@ -62,7 +59,8 @@ var upgrades = [
     "buffType":"pickaxe",
     "buffAmount":2
   }
-];
+]
+};
 //Updating HTML
 function formatCost(item, cost){
   // Use a function to format number so we can easily change it later (or based on user setting)
@@ -80,93 +78,93 @@ function disable(id){
 }
 
 function updateView(){
-  setNumberValue("ore", ore);
-  setNumberValue("toughness", toughness);
-  setNumberValue("money", money);
-  setNumberValue("pickpower", pickPower);
-  setNumberValue("picklevel",pickLevel);
-  setNumberValue("overflow", vaultOverflow);
-  setNumberValue("vaultpower", vaultOverflow);
-  setNumberValue("minepower", sellPrice);
-  setNumberValue("ops", ops);
-  setCostValue("pickaxebuy", "Upgrade	&#32;" + picks[area][nextPickNum][0], pickCost);
-  setCostValue("minebuy", mines[nextMineNum][0], mines[nextMineNum][1]);
-  setCostValue("vaultbuy", vaults[nextVaultNum][0], vaults[nextVaultNum][1]);
-  setCostValue("minerbuy", "Miner", minerCost);
-  setNumberValue("miners", miners);
-  if (nextPickNum === 6){
+  setNumberValue("ore", game.ore);
+  setNumberValue("toughness", game.toughness);
+  setNumberValue("money", game.money);
+  setNumberValue("pickpower", game.pickPower);
+  setNumberValue("picklevel",game.pickLevel);
+  setNumberValue("overflow", game.vaultOverflow);
+  setNumberValue("vaultpower", game.vaultOverflow);
+  setNumberValue("minepower", game.sellPrice);
+  setNumberValue("ops", game.ops);
+  setCostValue("pickaxebuy", "Upgrade	&#32;" + game.picks[game.area][game.nextPickNum][0], game.pickCost);
+  setCostValue("minebuy", game.mines[game.nextMineNum][0], game.mines[game.nextMineNum][1]);
+  setCostValue("vaultbuy", game.vaults[game.nextVaultNum][0], game.vaults[game.nextVaultNum][1]);
+  setCostValue("minerbuy", "Miner", game.minerCost);
+  setNumberValue("miners", game.miners);
+  if (game.nextPickNum === 6){
     disable("pickaxebuy");
   }
-  if (nextMineNum === 4){
+  if (game.nextMineNum === 4){
     disable("minebuy");
   }
-   if (nextVaultNum === 5){
+   if (game.nextVaultNum === 5){
     disable("vaultbuy");
   }
 }
 //Mining Code//
 function mine() {
-  ore += pickPower/toughness;
+  game.ore += game.pickPower/game.toughness;
   updateView();
   overflow();
 }
 //Vault Stuff//
 function overflow(){
-  if (vaultOverflow < ore) {
-    ore = vaultOverflow;
+  if (game.vaultOverflow < game.ore) {
+    game.ore = game.vaultOverflow;
     updateView();
   }
 }
 //Selling Your Ore (since 2019)//
 function sell(){
-  money += sellPrice * ore;
-  ore = 0;
+  game.money += game.sellPrice * game.ore;
+  game.ore = 0;
   updateView();
 }
 //Buying new Pickaxes
 function buyNextPick(){
-  if (money >= pickCost){
-    pickPower *= 1.1 * pickMultiply;
-    nextPickNum = Math.trunc(pickLevel/25);
-    money -= pickCost;
-    pickCost *= 1.125;
-    pickLevel++;
+  if (game.money >= game.pickCost){
+    game.pickPower *= 1.1 * pickMultiply;
+    game.nextPickNum = Math.trunc(game.pickLevel/25);
+    game.money -= game.pickCost;
+    game.pickCost *= 1.125;
+    game.pickLevel++;
     //if (nextPickNum == 6){nextPickNum...}
     updateView();
   }
 }
 //Buying new Mines
 function buyNextMine(){
-  if (money >= mines[nextMineNum][1]){
-    sellPrice = mines[nextMineNum][2];
-    toughness = mines[nextMineNum][3];
-    mineCost = mines[nextMineNum][1];
-    money -= mineCost;
-    ops = miners * minerPower;
-    ops /= toughness;
-    nextMineNum++;
+  if (game.money >= game.mines[game.nextMineNum][1]){
+    game.sellPrice = game.mines[game.nextMineNum][2];
+    game.toughness = game.mines[game.nextMineNum][3];
+    game.mineCost = game.mines[game.nextMineNum][1];
+    game.money -= game.mineCost;
+    game.ops = game.miners * game.minerPower;
+    game.ops /= game.toughness;
+    game.nextMineNum++;
     updateView();
 
   }
 }
 //Buying new Vaults
 function buyNextVault(){
-  if (money >= vaults[nextVaultNum][1]){
-    vaultOverflow = vaults[nextVaultNum][2];
-    vaultCost = vaults[nextVaultNum][1];
-    money -= vaultCost;
-    nextVaultNum++;
+  if (game.money >= game.vaults[game.nextVaultNum][1]){
+    game.vaultOverflow = game.vaults[game.nextVaultNum][2];
+    game.vaultCost = game.vaults[game.nextVaultNum][1];
+    game.money -= game.vaultCost;
+    game.nextVaultNum++;
     updateView();
   }
 }
 
 function buyMiner(){
-  if (money >=minerCost){
-    miners++;
-    ops = miners * minerPower;
-    ops /= toughness;
-    money -= minerCost;
-    minerCost *= 1.5;
+  if (game.money >=game.minerCost){
+    game.miners++;
+   game.ops = game.miners * game.minerPower;
+    game.ops /= game.toughness;
+    game.money -= game.minerCost;
+    game.minerCost *= 1.5;
     updateView();
   }
 }
@@ -177,7 +175,7 @@ function handleInterval () {
   last = Date.now();
   if (last >= goal) {
     goal = goal + 1000;
-    ore += ops;
+    game.ore += game.ops;
     updateView();
     overflow();
   }
@@ -187,20 +185,20 @@ setInterval(handleInterval, 1000);
 
 // UPGRADE SYSTEM
 function buyUpgrade(id) {
-  if(money >= upgrades[id].cost){
-    money -= upgrades[id].cost;
-    switch(upgrades[id].buffType) {
+  if(game.money >= game.upgrades[id].cost){
+    game.money -= upgrades[id].cost;
+    switch(game.upgrades[id].buffType) {
       case 'pickaxe':
-        pickMultiply *= upgrades[id].buffAmount;
-        pickPower *= pickMultiply;
+        game.pickMultiply *= game.upgrades[id].buffAmount;
+        game.pickPower *= game.pickMultiply;
       break;
      case 'mine':
-        mineMultiply *= upgrades[id].buffAmount;
-        sellPrice *= mineMultiply
+        game.mineMultiply *= game.upgrades[id].buffAmount;
+        game.sellPrice *= game.mineMultiply
       break;
      case 'toughness':
-        toughnessMultiply *= upgrades[id].buffAmount;
-        toughness *= toughnessMultiply
+        game.toughnessMultiply *= game.upgrades[id].buffAmount;
+        game.toughness *= game.toughnessMultiply
       break;
    }
   let buttonElement = document.getElementsByClassName("upgradeButton")[0];
@@ -210,7 +208,7 @@ function buyUpgrade(id) {
 
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(upgrades[id].name + "\n" + upgrades[id].discription + "\n" + upgrades[id].cost + "Coins");
+  var buttonContent = document.createTextNode(game.upgrades[id].name + "\n" + game.upgrades[id].discription + "\n" + game.upgrades[id].cost + "Coins");
   newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
     buyUpgrade(id);
