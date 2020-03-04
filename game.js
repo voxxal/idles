@@ -204,7 +204,7 @@ setInterval(handleInterval, 1000);
 // UPGRADE SYSTEM
 function buyUpgrade(id) {
   if(game.money >= game.upgrades[id].cost){
-    game.money -= upgrades[id].cost;
+    game.money -= game.upgrades[id].cost;
     switch(game.upgrades[id].buffType) {
       case 'pickaxe':
         game.pickMultiply *= game.upgrades[id].buffAmount;
