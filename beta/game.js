@@ -50,14 +50,18 @@ var game = {
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
     "cost":1500,
     "buffType":"pickaxe",
-    "buffAmount":2
+    "buffAmount":2,
+    "criteria":1000,
+    "created":false
   },
   {
     "name":"Shiny Ores",
     "discription":"The ore is now more shiny. Sell Price increased by 100%",
     "cost":25000,
     "buffType":"pickaxe",
-    "buffAmount":2
+    "buffAmount":2,
+    "criteria":20000,
+    "created":false
   }
 ]
 };
@@ -100,6 +104,12 @@ function updateView(){
   }
    if (game.nextVaultNum === 5){
     disable("vaultbuy");
+  }
+  for (var i = 0; i < game.upgrades.length; i++) {
+    if(money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
+      createUpgrade(i);
+      game.upgrades[i].created = true;
+    }
   }
 }
 //Mining Code//
