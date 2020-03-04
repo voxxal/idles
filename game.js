@@ -57,7 +57,7 @@ var game = {
     "name":"Shiny Ores",
     "discription":"The ore is now more shiny. Sell Price increased by 100%",
     "cost":25000,
-    "buffType":"pickaxe",
+    "buffType":"mine",
     "buffAmount":2,
     "criteria":20000,
     "created":false
@@ -154,12 +154,12 @@ function buyNextPick(){
 //Buying new Mines
 function buyNextMine(){
   if (game.money >= game.mines[game.nextMineNum][1]){
-    game.sellPrice = game.mines[game.nextMineNum][2];
-    game.toughness = game.mines[game.nextMineNum][3];
+    game.sellPrice = game.mines[game.nextMineNum][2]*game.mineMultiply;
+    game.toughness = game.mines[game.nextMineNum][3]*game.toughnessMultiply;
     game.mineCost = game.mines[game.nextMineNum][1];
     game.money -= game.mineCost;
     game.ops = game.miners * game.minerPower;
-    game.ops /= game.toughness;
+    game.ops /= game.toughness*game.toughnessMultiply;
     game.nextMineNum++;
     updateView();
 
@@ -251,3 +251,4 @@ function load(){
   game=JSON.parse(localStorage.getItem('game'));
   updateView();
 }
+load();
