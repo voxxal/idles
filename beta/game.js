@@ -12,39 +12,39 @@ const scientific = new ADNotations.ScientificNotation();
 
 //Currency//
 var game = {
-"money" = 0,
- "ore" = 0,
+"money" : 0,
+ "ore" : 0,
 //Pickaxes//
- "picks" = [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ],
- "pickPower" = 1,
- "pickLevel" = 1,
- "nextPickNum" = 0,
- "pickCost" = 10,
+ "picks" : [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ],
+ "pickPower" : 1,
+ "pickLevel" : 1,
+ "nextPickNum" : 0,
+ "pickCost" : 10,
 //Mines//
-  "mines" = [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]],
-  "sellPrice" = 1,
-  "toughness" = 1,
-"nextMineNum" = 0,
- "mineCost" = 400,
+  "mines" : [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]],
+  "sellPrice" : 1,
+  "toughness" : 1,
+"nextMineNum" : 0,
+ "mineCost" : 400,
 
 //Vaults//
-"vaults" = [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
-"vaultOverflow" = 200,
-"nextVaultNum" = 0,
-"vaultCost" = 100,
+"vaults" ; [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
+"vaultOverflow" : 200,
+"nextVaultNum" : 0,
+"vaultCost" : 100,
 
 //Miners//
-"miners" = 0,
-"minerPower" = 1,
-"minerCost" = 20,
-"ops" = 0,
+"miners" : 0,
+"minerPower" : 1,
+"minerCost" : 20,
+"ops" : 0,
 
 //Upgrades//
-"area" = 0,
-"pickMultiply" = 1,
-"mineMultiply" = 1,
-"toughnessMultiply" = 1,
-"upgrades" = [
+"area" : 0,
+"pickMultiply" : 1,
+"mineMultiply" : 1,
+"toughnessMultiply" : 1,
+"upgrades" : [
   {
     "name":"Power Pickaxe",
     "discription":"Feel the Power! Pickaxe Power increased by 100%",
