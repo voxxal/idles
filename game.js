@@ -9,6 +9,7 @@ const scientific = new ADNotations.ScientificNotation();
 
 //Thank you for playing!
 
+
 //Currency//
 var game = {
 "money" : 0,
@@ -154,7 +155,7 @@ function buyNextPick(){
 //Buying new Mines
 function buyNextMine(){
   if (game.money >= game.mines[game.nextMineNum][1]){
-    game.sellPrice = game.mines[game.nextMineNum][2]*game.mineMultiply;
+    game.sellPrice = game.mines[game.nextMineNum][2]*game.mineMupltiply;
     game.toughness = game.mines[game.nextMineNum][3]*game.toughnessMultiply;
     game.mineCost = game.mines[game.nextMineNum][1];
     game.money -= game.mineCost;
