@@ -62,6 +62,15 @@ var game = {
     "buffAmount":2,
     "criteria":20000,
     "created":false
+  },
+  {
+    "name":"Stronger Picks",
+    "discription":"Give your Miners better Pickaxes. OPS increased by 100%",
+    "cost":15000,
+    "buffType":"miners",
+    "buffAmount":2,
+    "criteria":10000,
+    "created":false
   }
 ]
 };
@@ -210,6 +219,10 @@ function buyUpgrade(id) {
         game.toughnessMultiply *= game.upgrades[id].buffAmount;
         game.toughness *= game.toughnessMultiply
       break;
+      case 'miners':
+         game.minerPower *= game.upgrades[id].buffAmount;
+         game.ops *= game.minerPower
+       break;
    }
   let buttonElement = document.getElementsByClassName("upgradeButton")[0];
   buttonElement.parentNode.removeChild(buttonElement);
