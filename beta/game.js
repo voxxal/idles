@@ -46,7 +46,7 @@ var area = 0;
 var energyUnlocked = false;
 var pickMultiply = 1;
 var mineMultiply = 1;
-var toughnessMultiply
+var toughnessMultiply = 1;
 var upgrades = [
   {
     "name":"Power Pickaxe",
@@ -58,7 +58,7 @@ var upgrades = [
   {
     "name":"Shiny Ores",
     "discription":"The ore is now more shiny. Sell Price increased by 100%",
-    "cost":2500,
+    "cost":25000,
     "buffType":"pickaxe",
     "buffAmount":2
   }
@@ -197,6 +197,10 @@ function buyUpgrade(id) {
      case 'mine':
         mineMultiply *= upgrades[id].buffAmount;
         sellPrice *= mineMultiply
+      break;
+     case 'toughness':
+        toughnessMultiply *= upgrades[id].buffAmount;
+        toughness *= toughnessMultiply
       break;
    }
   let buttonElement = document.getElementsByClassName("upgradeButton")[0];
