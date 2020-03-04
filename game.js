@@ -252,5 +252,6 @@ function load(){
   game=JSON.parse(localStorage.getItem('game'));
   updateView();
 }
-save();
+if(localStorage.getItem('game') !== null){
 load();
+}
