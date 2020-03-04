@@ -8,7 +8,6 @@ const scientific = new ADNotations.ScientificNotation();
 //      _|         _|_|     _|      _|     _|_|_|   _|
 
 //Thank you for playing!
-//This is a BETA Version. Very Unstable
 
 //Currency//
 var game = {
