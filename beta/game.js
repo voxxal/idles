@@ -217,3 +217,15 @@ function createUpgrade(id) {
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
 }
+function save(){
+  window.localStorage.clear();
+var save = JSON.stringify(game);
+window.localStorage.setItem("game", save);
+console.log("Game Saved!")
+updateView();
+}
+setInterval(save,30000);
+function load(){
+  game=JSON.parse(localStorage.getItem('game'));
+  updateView();
+}
