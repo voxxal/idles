@@ -8,7 +8,7 @@ const scientific = new ADNotations.ScientificNotation();
 //      _|         _|_|     _|      _|     _|_|_|   _|
 
 //Thank you for playing!
-//This is a BETA Version. Very Unstable
+//This is a BETA version
 
 //Currency//
 var game = {
@@ -58,7 +58,7 @@ var game = {
     "name":"Shiny Ores",
     "discription":"The ore is now more shiny. Sell Price increased by 100%",
     "cost":25000,
-    "buffType":"pickaxe",
+    "buffType":"mine",
     "buffAmount":2,
     "criteria":20000,
     "created":false
@@ -115,7 +115,7 @@ function updateView(){
     disable("vaultbuy");
   }
   for (var i = 0; i < game.upgrades.length; i++) {
-    if(money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
+    if(game.money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
       createUpgrade(i);
       game.upgrades[i].created = true;
     }
@@ -143,7 +143,7 @@ function sell(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (game.money >= game.pickCost){
-    game.pickPower *= 1.1 * pickMultiply;
+    game.pickPower *= 1.1 * game.pickMultiply;
     game.nextPickNum = Math.trunc(game.pickLevel/25);
     game.money -= game.pickCost;
     game.pickCost *= 1.125;
@@ -155,12 +155,12 @@ function buyNextPick(){
 //Buying new Mines
 function buyNextMine(){
   if (game.money >= game.mines[game.nextMineNum][1]){
-    game.sellPrice = game.mines[game.nextMineNum][2];
-    game.toughness = game.mines[game.nextMineNum][3];
+    game.sellPrice = game.mines[game.nextMineNum][2]*game.mineMupltiply;
+    game.toughness = game.mines[game.nextMineNum][3]*game.toughnessMultiply;
     game.mineCost = game.mines[game.nextMineNum][1];
     game.money -= game.mineCost;
     game.ops = game.miners * game.minerPower;
-    game.ops /= game.toughness;
+    game.ops /= game.toughness*game.toughnessMultiply;
     game.nextMineNum++;
     updateView();
 
@@ -205,7 +205,7 @@ setInterval(handleInterval, 1000);
 // UPGRADE SYSTEM
 function buyUpgrade(id) {
   if(game.money >= game.upgrades[id].cost){
-    game.money -= upgrades[id].cost;
+    game.money -= game.upgrades[id].cost;
     switch(game.upgrades[id].buffType) {
       case 'pickaxe':
         game.pickMultiply *= game.upgrades[id].buffAmount;
@@ -251,4 +251,7 @@ setInterval(save,30000);
 function load(){
   game=JSON.parse(localStorage.getItem('game'));
   updateView();
+}
+if(localStorage.getItem('game') !== null){
+load();
 }
