@@ -119,6 +119,8 @@ function updateView(){
       createUpgrade(i);
       game.upgrades[i].created = true;
     }
+   document.getElementById("vault").value = game.ore;
+   document.getElementById("vault").max = game.vaultOverflow;
   }
 }
 //Mining Code//
