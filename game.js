@@ -233,7 +233,7 @@ function buyUpgrade(id) {
 
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(game.upgrades[id].name + "\n" + game.upgrades[id].discription + "\n" + game.upgrades[id].cost + "Coins");
+  var buttonContent = document.createTextNode(game.upgrades[id].name + "\n" + game.upgrades[id].discription + "\n" + game.upgrades[id].cost + " Coins");
   newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
     buyUpgrade(id);
