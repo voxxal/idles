@@ -145,7 +145,7 @@ function sell(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (game.money >= game.pickCost){
-    game.pickPower *= 1.1 * game.pickMultiply;
+    game.pickPower *= 1+(0.1 * game.pickMultiply);
     game.nextPickNum = Math.trunc(game.pickLevel/25);
     game.money -= game.pickCost;
     game.pickCost *= 1.125;
