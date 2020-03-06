@@ -8,7 +8,7 @@ const scientific = new ADNotations.ScientificNotation();
 //      _|         _|_|     _|      _|     _|_|_|   _|
 
 //Thank you for playing!
-//This is a BETA version
+//This is BETA version
 
 //Currency//
 var game = {
@@ -119,6 +119,8 @@ function updateView(){
       createUpgrade(i);
       game.upgrades[i].created = true;
     }
+   document.getElementById("vault").value = game.ore;
+   document.getElementById("vault").max = game.vaultOverflow;
   }
 }
 //Mining Code//
@@ -143,7 +145,7 @@ function sell(){
 //Buying new Pickaxes
 function buyNextPick(){
   if (game.money >= game.pickCost){
-    game.pickPower *= 1.1 * game.pickMultiply;
+    game.pickPower *= 1+(0.1 * game.pickMultiply);
     game.nextPickNum = Math.trunc(game.pickLevel/25);
     game.money -= game.pickCost;
     game.pickCost *= 1.125;
@@ -231,7 +233,7 @@ function buyUpgrade(id) {
 
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
-  var buttonContent = document.createTextNode(game.upgrades[id].name + "\n" + game.upgrades[id].discription + "\n" + game.upgrades[id].cost + "Coins");
+  var buttonContent = document.createTextNode(game.upgrades[id].name + "\n" + game.upgrades[id].discription + "\n" + game.upgrades[id].cost + " Coins");
   newUpgrade.className = "upgradeButton";
   newUpgrade.onclick = function() {
     buyUpgrade(id);
@@ -244,7 +246,8 @@ function save(){
   window.localStorage.clear();
 var save = JSON.stringify(game);
 window.localStorage.setItem("game", save);
-console.log("Game Saved!")
+console.log("Game Saved!");
+$.notify("Game Saved", "success");
 updateView();
 }
 setInterval(save,30000);
@@ -254,4 +257,7 @@ function load(){
 }
 if(localStorage.getItem('game') !== null){
 load();
+$.notify("Game Loaded", "info");
+}else{
+ $.notify("No Save Game Found", "warn");
 }
