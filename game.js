@@ -38,7 +38,11 @@ var game = {
 "minerPower" : 1,
 "minerCost" : 20,
 "ops" : 0,
-
+ 
+ //Energy//
+"energy":0,
+"allBoost":1,
+"ticks":1000,
 //Upgrades//
 "area" : 0,
 "pickMultiply" : 1,
@@ -190,18 +194,18 @@ function buyMiner(){
   }
 }
 var last = Date.now();
-var goal = last + 1000;
+var goal = last + game.ticks;
 
 function handleInterval () {
   last = Date.now();
   if (last >= goal) {
-    goal = goal + 1000;
+    goal = goal + game.ticks;
     game.ore += game.ops;
     updateView();
     overflow();
   }
 }
-setInterval(handleInterval, 1000);
+setInterval(handleInterval, game.ticks);
 
 
 // UPGRADE SYSTEM
