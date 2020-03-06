@@ -5,14 +5,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Mine N' Grind</title>
-	<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link id="favicon" rel="icon" type="image/x-icon" href="https://v0xal.github.io/Mine-N-Grind/favicon.ico">
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"></script>
-<script src="game.js"></script>
+
+
 <div class="minesell">
   <button onclick="mine();">Mine</button>
   <div class="horDiv"></div>
@@ -27,7 +26,8 @@
 </div>
 <div class="Vaults">
   <button id = "vaultbuy" onclick="buyNextVault();">Stone Vault (100.00 Coins)</button>
-  <p>Vault Storage: <span id="vaultpower">200.00</span></p>
+	<p>Vault Storage: <span id="vaultpower">200.00</span></p>
+	<progress id="vault" value="0" max="200"></progress>
 </div>
 <div class="Miners">
 	<ul>
@@ -37,7 +37,7 @@
   <p>Miners: <span id="miners">0.00</span></p>
 </div>
 <div class="Mines" id="Mines">
-  <button id = "minebuy" onclick="buyNextMine();">Copper Mine (2.00K Coins)</button>
+  <button id = "minebuy" onclick="buyNextMine();">Copper Mine (2.00 K Coins)</button>
   <p>Ore Worth: <span id="minepower">1.00</span></p>
   <p>Toughness: <span id="toughness">1.00</span></p>
 </div>
@@ -49,5 +49,14 @@
  </fieldset>
 </form>
 </div>
+	<p style="
+    position: absolute;
+    bottom: 0px;
+    right: 25px;">Check The Beta Out <a href="https://v0xal.github.io/Mine-N-Grind/beta/">Here</a></p>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
+<script src="game.js"></script>
   </body>
 </html>
