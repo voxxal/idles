@@ -96,10 +96,12 @@ function updateView(){
   setNumberValue("money", game.money);
   setNumberValue("pickpower", game.pickPower);
   setNumberValue("picklevel",game.pickLevel);
+ 
   setNumberValue("overflow", game.vaultOverflow);
   setNumberValue("vaultpower", game.vaultOverflow);
   setNumberValue("minepower", game.sellPrice);
   setNumberValue("ops", game.ops);
+ setNumberValue("energy",game.energy);
   setCostValue("pickaxebuy", "Upgrade	&#32;" + game.picks[game.area][game.nextPickNum][0], game.pickCost);
   setCostValue("minebuy", game.mines[game.nextMineNum][0], game.mines[game.nextMineNum][1]);
   setCostValue("vaultbuy", game.vaults[game.nextVaultNum][0], game.vaults[game.nextVaultNum][1]);
@@ -242,6 +244,15 @@ function createUpgrade(id) {
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
 }
+//Generate Energy
+function genEnergy(){
+ if(game.ore >= 1){
+  game.ore -= 1;
+  game.energy+=1;
+ }
+ 
+}
+
 function save(){
   window.localStorage.clear();
 var save = JSON.stringify(game);
