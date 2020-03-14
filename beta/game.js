@@ -250,6 +250,7 @@ function genEnergy(){
  if(game.ore >= 1){
   game.ore -= 1;
   game.energy+=1;
+  updateView();
  }
  
 }
