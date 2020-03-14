@@ -38,7 +38,8 @@ var game = {
 "minerPower" : 1,
 "minerCost" : 20,
 "ops" : 0,
-
+//Energy//
+ "energy":0,
 //Upgrades//
 "area" : 0,
 "pickMultiply" : 1,
