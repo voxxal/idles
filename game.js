@@ -160,10 +160,10 @@ function buyNextPick(){
 }
 //Buying new Mines
 function buyNextMine(){
-  if (game.money >= game.mines[game.nextMineNum][1]){
-    game.sellPrice = game.mines[game.nextMineNum][2]*game.mineMupltiply;
-    game.toughness = game.mines[game.nextMineNum][3]*game.toughnessMultiply;
-    game.mineCost = game.mines[game.nextMineNum][1];
+  if (game.money >= game.mines[game.nextMineNum][area][1]){
+    game.sellPrice = game.mines[game.nextMineNum][area][2]*game.mineMupltiply;
+    game.toughness = game.mines[game.nextMineNum][area][3]*game.toughnessMultiply;
+    game.mineCost = game.mines[game.nextMineNum][area][1];
     game.money -= game.mineCost;
     game.ops = game.miners * game.minerPower;
     game.ops /= game.toughness*game.toughnessMultiply;
