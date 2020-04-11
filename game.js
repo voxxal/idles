@@ -93,46 +93,6 @@ function setCostValue(id, item, cost){
 function disable(id){
   document.getElementById(id).disabled = true;
 }
-
-function updateView(){
-  setNumberValue("ore", game.ore);
-  setNumberValue("toughness", game.toughness);
-  setNumberValue("money", game.money);
-  setNumberValue("pickpower", game.pickPower);
-  setNumberValue("picklevel",game.pickLevel);
-  setNumberValue("overflow", game.vaultOverflow);
-  setNumberValue("vaultpower", game.vaultOverflow);
-  setNumberValue("minepower", game.sellPrice);
-  setNumberValue("ops", game.ops);
-  setCostValue("pickaxebuy", "Upgrade	&#32;" + game.picks[game.area][game.nextPickNum][0], game.pickCost);
-  setCostValue("minebuy", game.mines[game.nextMineNum][0], game.mines[game.nextMineNum][1]);
-  setCostValue("vaultbuy", game.vaults[game.nextVaultNum][0], game.vaults[game.nextVaultNum][1]);
-  setCostValue("minerbuy", "Miner", game.minerCost);
-  setNumberValue("miners", game.miners);
-  if (game.nextPickNum === 6){
-    disable("pickaxebuy");
-  }
-  if (game.nextMineNum === 4){
-    disable("minebuy");
-  }
-   if (game.nextVaultNum === 5){
-    disable("vaultbuy");
-  }
-  for (var i = 0; i < game.upgrades.length; i++) {
-    if(game.money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
-      createUpgrade(i);
-      game.upgrades[i].created = true;
-    }
-   document.getElementById("vault").value = game.ore;
-   document.getElementById("vault").max = game.vaultOverflow;
-  }
-}
-//Mining Code//
-function mine() {
-  game.ore += game.pickPower/game.toughness;
-  updateView();
-  overflow();
-}
 //Vault Stuff//
 function overflow(){
   if (game.vaultOverflow < game.ore) {
@@ -140,6 +100,15 @@ function overflow(){
     updateView();
   }
 }
+
+
+//Mining Code//
+function mine() {
+  game.ore += game.pickPower/game.toughness;
+  updateView();
+  overflow();
+}
+
 //Selling Your Ore (since 2019)//
 function sell(){
   game.money += game.sellPrice * game.ore;
@@ -227,7 +196,7 @@ function buyUpgrade(id) {
       break;
       case 'miners':
          game.minerPower *= game.upgrades[id].buffAmount;
-         game.ops *= game.minerPower
+         game.ops *= game.minerPower;
        break;
    }
   let buttonElement = document.getElementsByClassName("upgradeButton")[0];
@@ -242,7 +211,7 @@ function createUpgrade(id) {
   newUpgrade.onclick = function() {
     buyUpgrade(id);
     return false;
-  }
+  };
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu") .appendChild(newUpgrade);
 }
@@ -264,4 +233,37 @@ load();
 $.notify("Game Loaded", "info");
 }else{
  $.notify("No Save Game Found", "warn");
+}
+function updateView(){
+  setNumberValue("ore", game.ore);
+  setNumberValue("toughness", game.toughness);
+  setNumberValue("money", game.money);
+  setNumberValue("pickpower", game.pickPower);
+  setNumberValue("picklevel",game.pickLevel);
+  setNumberValue("overflow", game.vaultOverflow);
+  setNumberValue("vaultpower", game.vaultOverflow);
+  setNumberValue("minepower", game.sellPrice);
+  setNumberValue("ops", game.ops);
+  setCostValue("pickaxebuy", "Upgrade	&#32;" + game.picks[game.area][game.nextPickNum][0], game.pickCost);
+  setCostValue("minebuy", game.mines[game.nextMineNum][0], game.mines[game.nextMineNum][1]);
+  setCostValue("vaultbuy", game.vaults[game.nextVaultNum][0], game.vaults[game.nextVaultNum][1]);
+  setCostValue("minerbuy", "Miner", game.minerCost);
+  setNumberValue("miners", game.miners);
+  if (game.nextPickNum === 6){
+    disable("pickaxebuy");
+  }
+  if (game.nextMineNum === 4){
+    disable("minebuy");
+  }
+   if (game.nextVaultNum === 5){
+    disable("vaultbuy");
+  }
+  for (var i = 0; i < game.upgrades.length; i++) {
+    if(game.money >= game.upgrades[i].criteria && game.upgrades[i].created == false){
+      createUpgrade(i);
+      game.upgrades[i].created = true;
+    }
+   document.getElementById("vault").value = game.ore;
+   document.getElementById("vault").max = game.vaultOverflow;
+  }
 }
