@@ -37,17 +37,23 @@ let game = {
     energy: 0,
     decay: 5,
   },
-
   //Mines//
   mines: {
     data: [
       [
         {
+          name: "Stone Mine",
+          cost: 0,
+          power: 1,
+          toughness: 1,
+          color: "#444444",
+        },
+        {
           name: "Copper Mine",
           cost: 2000,
           power: 7,
           toughness: 5,
-          color: "b87333",
+          color: "#b87333",
         },
         {
           name: "Iron Mine",
@@ -82,25 +88,59 @@ let game = {
     ],
     sell: 1,
     toughness: 1,
-    next: 0,
+    next: 1,
     cost: 400,
     multiply: 1,
     toughMultiply: 1,
   },
 
   //Vaults//
-  vaults: [
-    ["Stone Vault", 100, 400],
-    ["Iron Vault", 1000, 800],
-    ["Steel Vault", 10000, 1500],
-    ["Gold Vault", 100000, 5000],
-    ["Diamond Vault", 1000000, 15000],
-    ["Shock Vault", 1000000000, 100000],
-  ],
-  vaultOverflow: 200,
-  nextVaultNum: 0,
-  vaultCost: 100,
-
+  vaults: {
+    data: [
+      [
+        {
+          name: "Stone Vault",
+          cost: 0,
+          capasity: 200,
+        },
+        {
+          name: "Copper Vault",
+          cost: 1000,
+          capasity: 1000,
+        },
+        {
+          name: "Iron Vault",
+          cost: 10000,
+          capasity: 4000,
+        },
+        {
+          name: "Steel Vault",
+          cost: 100000,
+          capasity: 8000,
+        },
+        {
+          name: "Steel Vault",
+          cost: 100000,
+          capasity: 16000,
+        },
+        {
+          name: "Diamond Vault",
+          cost: 1000000,
+          capasity: 32000,
+        },
+      ],
+      [
+        {
+          name: "Shock Vault",
+          cost: 1000000000,
+          capasity: 100000,
+        },
+      ],
+    ],
+    capasity: 200,
+    next: 1,
+    cost: 1000,
+  },
   //Miners//
   miners: 0,
   minerPower: 1,
@@ -183,15 +223,16 @@ function goTo(element) {
 }
 //Vault Stuff//
 function overflow() {
-  if (game.vaultOverflow < game.ore) {
-    game.ore = game.vaultOverflow;
+  if (game.vault.capasity < game.ore) {
+    game.ore = game.vault.capasity;
     updateView();
   }
 }
 
 //Mining Code//
 function mine() {
-  game.ore += game.pick.power * (1+game.pick.energy* 0.5)/game.mines.toughness;
+  game.ore +=
+    (game.pick.power * (1 + game.pick.energy * 0.5)) / game.mines.toughness;
   updateView();
   overflow();
 }
@@ -231,11 +272,11 @@ function buy(type) {
       }
       break;
     case "vault":
-      if (game.money >= game.vaults[game.nextVaultNum][1]) {
-        game.vaultOverflow = game.vaults[game.nextVaultNum][2];
-        game.vaultCost = game.vaults[game.nextVaultNum][1];
-        game.money -= game.vaultCost;
-        game.nextVaultNum++;
+      if (game.money >= game.vaults.data[game.vaults.next].cost) {
+        game.vaults.capasity = game.vaults.data[game.vaults.next].capasity;
+        game.vault.cost = game.vaults.data[game.vault.next].cost;
+        game.money -= game.vault.cost;
+        game.vaults.next++;
       }
       break;
     case "miner":
@@ -267,8 +308,8 @@ function loop() {
     game.energy += game.generators.active;
   }
   //Energy Decay
-  if(game.pick.energy > 0){
-    game.pick.energy-= game.pick.decay;
+  if (game.pick.energy > 0) {
+    game.pick.energy -= game.pick.decay;
   }
 }
 let timer = setInterval(loop, game.ticks);
@@ -338,7 +379,7 @@ function deactivateGenerator() {
 function boost(type) {
   switch (type) {
     case "pick":
-      if(game.energy > 100){
+      if (game.energy > 100) {
         game.pick.energy += 100;
         game.energy -= 100;
       }
@@ -357,8 +398,10 @@ try {
 } catch (err) {
   window.localStorage.clear();
   console.error("Invalid Save File");
-  $.notify("Invalid Save File", "error");
-  location.reload();
+  $.notify("Invalid Save File, Reloading", "error");
+  setTimeout(function () {
+    location.reload();
+  }, 200231230);
 }
 function save() {
   window.localStorage.clear();
@@ -408,10 +451,13 @@ function updateView() {
   setNumberValue("ore", game.ore);
   setNumberValue("toughness", game.mines.toughness);
   setNumberValue("money", game.money);
-  setNumberValue("pickpower", game.pick.power * (1+game.pick.energy* 0.5)/game.mines.toughness);
+  setNumberValue(
+    "pickpower",
+    (game.pick.power * (1 + game.pick.energy * 0.5)) / game.mines.toughness
+  );
   setNumberValue("picklevel", game.pick.level);
-  setNumberValue("overflow", game.vaultOverflow);
-  setNumberValue("vaultpower", game.vaultOverflow);
+  setNumberValue("overflow", game.vaults.capasity);
+  setNumberValue("vaultpower", game.vaults.capasity);
   setNumberValue("minepower", game.mines.sell);
   setNumberValue("ops", game.ops);
   setNumberValue("energy", game.energy);
@@ -443,15 +489,17 @@ function updateView() {
   } else {
     setCostValue(
       "vaultbuy",
-      game.vaults[game.nextVaultNum][0],
-      game.vaults[game.nextVaultNum][1]
+      game.vaults.data[game.area][game.vaults.next].name,
+      game.vaults.data[game.area][game.vaults.next].cost
     );
   }
+  document.getElementById("vault").value = game.ore;
+  document.getElementById("vault").max = game.vaults.capasity;
   setCostValue("minerbuy", "Miner", game.minerCost);
   setCostValue("generatorBuy", "Generator", game.generators.cost);
-  if(game.pick.energy > 60){
+  if (game.pick.energy > 60) {
     disable("boostPick");
-  }else{
+  } else {
     enable("boostPick");
   }
   //UPGRADE STUFF//
@@ -463,7 +511,18 @@ function updateView() {
       createUpgrade(i);
       game.upgrades[i].created = true;
     }
-    document.getElementById("vault").value = game.ore;
-    document.getElementById("vault").max = game.vaultOverflow;
   }
+  var css =
+    "progress[value]::-webkit-progress-value {background:" +
+    game.mines.data[game.area][game.mines.next - 1].color +
+    ";}";
+  var style = document.createElement("style");
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  document.getElementsByTagName("head")[0].appendChild(style);
 }
