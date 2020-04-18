@@ -1,3 +1,10 @@
+html,body{
+  height:100%;
+  width: 100%;
+  margin:0px;
+  padding:0px;
+  overflow: hidden;
+}
 div {
   display: inline-block;
   margin :20px;
@@ -6,15 +13,54 @@ div {
   margin: 1px;
 }
 
+.tabContent{
+  width: 90%;
+  height:90%;
+  display: none;
+}
 ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin:0px;
+  padding:1%;
+  width:100%;
+}
+li {
+  display: inline;
+  padding:1%;
+  margin:1px;
+  transition: 200ms;
+}
+li:hover{
+  background:#aaa;
+}
+progress[value]#vault{
+  -webkit-appearance: none;
+  appearance: none;
+
+}
+progress[value]#vault::-webkit-progress-bar{
+  background-color: #ccc;
+}
+progress[value]::-webkit-progress-value {
+  background:#444;
 }
 #upgrademenu{
-  width:350px;
-  height:200px;
+  width:90%;
+  height:90%;
   overflow:scroll;
+}
+#startArea{
+  display:block;
+}
+#statBar{
+  width: 100%;
+  height:1%;
+  margin:2px;
+  margin-left:10px;
+  background:#777;
+}
+.stat{
+  display: inline;
 }
 .upgradeButton{
     background: #cccccc;
