@@ -15,20 +15,20 @@ var game = {
 "money" : 0,
  "ore" : 0,
 //Pickaxes//
- "picks" : [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"] ],
+ "picks" : [ [["Stick"],["Wood Pickaxe"],["Stone Pickaxe"], ["Iron Pickaxe"],["Steel Pickaxe"], ["Diamond Pickaxe"] ], ["Shock Pickaxe"], ["Godly Pickaxe I"], ["Godly Pickaxe II"] ],
  "pickPower" : 1,
  "pickLevel" : 1,
  "nextPickNum" : 0,
  "pickCost" : 10,
 //Mines//
-  "mines" : [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 1000000000, 100,25]],
+  "mines" : [["Copper Mine", 2000 , 7, 5],["Iron Mine", 100000 , 15, 10], ["Steel Mine", 2000000 , 30,15],["Diamond Mine", 3000000, 50, 20], ["Shock Mine", 10000000, 100,25], ["Godly Mine I", 100000000, 250,35], ["Godly Mine II", 1000000000, 550,50]],
   "sellPrice" : 1,
   "toughness" : 1,
 "nextMineNum" : 0,
  "mineCost" : 400,
 
 //Vaults//
-"vaults" : [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",1000000000 , 100000]],
+"vaults" : [["Stone Vault", 100 , 400],["Iron Vault", 1000 , 800],["Steel Vault", 10000 , 1500], ["Gold Vault", 100000 , 5000],["Diamond Vault", 1000000, 15000],["Shock Vault",10000000 , 100000],["Godly Vault I",100000000,1000000],["Godly Vault II",1000000000,10000000]],
 "vaultOverflow" : 200,
 "nextVaultNum" : 0,
 "vaultCost" : 100,
@@ -50,12 +50,21 @@ var game = {
 "toughnessMultiply" : 1,
 "upgrades" : [
   {
-    "name":"Power Pickaxe",
-    "discription":"Feel the Power! Pickaxe Power increased by 100%",
+    "name":"Power Pickaxe I",
+    "discription":"Feel the power! Pickaxe Power increased by 100%",
     "cost":1500,
     "buffType":"pickaxe",
     "buffAmount":2,
     "criteria":1000,
+    "created":false
+  },
+  {
+    "name":"Power Pickaxe II",
+    "discription":"Feel the power again! Pickaxe Power increased by 200%",
+    "cost":30000,
+    "buffType":"pickaxe",
+    "buffAmount":3,
+    "criteria":10000,
     "created":false
   },
   {
@@ -68,12 +77,30 @@ var game = {
     "created":false
   },
   {
+    "name":"Shinier Ores",
+    "discription":"The ore is now even more shiny. Sell Price increased by 200%",
+    "cost":100000,
+    "buffType":"mine",
+    "buffAmount":3,
+    "criteria":25000,
+    "created":false
+  },
+  {
     "name":"Stronger Picks",
     "discription":"Give your Miners better Pickaxes. OPS increased by 100%",
     "cost":15000,
     "buffType":"miners",
     "buffAmount":2,
     "criteria":10000,
+    "created":false
+  },
+   {
+    "name":"Drillers",
+    "discription":"Give your Miners drills. OPS increased by 200%",
+    "cost":150000,
+    "buffType":"miners",
+    "buffAmount":3,
+    "criteria":50000,
     "created":false
   }
 ]
@@ -158,7 +185,7 @@ function buyMiner(){
    game.ops = game.miners * game.minerPower;
     game.ops /= game.toughness;
     game.money -= game.minerCost;
-    game.minerCost *= 1.5;
+    game.minerCost *= 1.09;
     updateView();
   }
 }
