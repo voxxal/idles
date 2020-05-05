@@ -17,8 +17,13 @@ function updateView() {
     setNumberValue("activeGenerators", game.generators.active);
     setNumberValue("generatorsOutOf", game.generators.amount);
     setNumberValue("pickEnergy", game.pick.energy);
-    if (game.pick.next === 6) {
+    if (game.pick.next === 6 && game.area === 0) {
       disable("pickaxebuy");
+      setCostValue(
+        "pickaxebuy",
+        `Upgrade	&#32;  ${data.pick.names[game.area+1][0][0]}`,
+        game.pick.cost
+      );
     } else {
       setCostValue(
         "pickaxebuy",
@@ -26,8 +31,13 @@ function updateView() {
         game.pick.cost
       );
     }
-    if (game.mines.next === 4) {
+    if (game.mines.next === 5 && game.area === 0) {
       disable("minebuy");
+      setCostValue(
+        "minebuy",
+        data.mines[game.area+1][0].name,
+        data.mines[game.area +1][0].cost
+      );
     } else {
       setCostValue(
         "minebuy",
@@ -35,8 +45,13 @@ function updateView() {
         data.mines[game.area][game.mines.next].cost
       );
     }
-    if (game.nextVaultNum === 5) {
+    if (game.vaults.next === 6 && game.area === 0) {
       disable("vaultbuy");
+      setCostValue(
+        "vaultbuy",
+        data.vaults[game.area+1][0].name,
+        data.vaults[game.area+1][0].cost
+      );
     } else {
       setCostValue(
         "vaultbuy",

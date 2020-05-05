@@ -1,3 +1,4 @@
+const CURRENT_VERSION_NUM = "v1.4beta"
 const data = {
   pick: {
     names: [
@@ -132,6 +133,7 @@ const data = {
   };
   
 let game = {
+  VERSION_NUM:"v1.4beta",
   money: 0,
   ore: 0,
   autosave: setInterval(save, 30000),
@@ -181,7 +183,15 @@ let game = {
   //Upgrades//
   area: 0,
 };
-
+(function(){
+  if(game.VERSION_NUM == CURRENT_VERSION_NUM){
+    return;
+  }else{
+    $.notify("Savefile is outdated", "error");
+    setTimeout(
+      location.reload(),3000);
+  }
+});
 function save() {
   window.localStorage.clear();
   let save = JSON.stringify(game);

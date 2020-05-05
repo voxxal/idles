@@ -50,6 +50,7 @@ function buy(type) {
       break;
     case "mine":
       if (game.money >= data.mines[game.area][game.mines.next].cost) {
+        sell();
         game.mines.sell =
         data.mines[game.area][game.mines.next].power *
           game.mines.multiply;
@@ -64,9 +65,9 @@ function buy(type) {
       }
       break;
     case "vault":
-      if (game.money >= data.vaults[game.vaults.next].cost) {
-        game.vaults.capasity = data.vaults[game.vaults.next].capasity;
-        game.vaults.cost = data.vaults[game.vaults.next].cost;
+      if (game.money >= data.vaults[game.area][game.vaults.next].cost) {
+        game.vaults.capasity = data.vaults[game.area][game.vaults.next].capasity;
+        game.vaults.cost = data.vaults[game.area][game.vaults.next].cost;
         game.money -= game.vaults.cost;
         game.vaults.next++;
       }
@@ -176,17 +177,5 @@ function boost(type) {
       break;
   }
   updateView();
-}
-try {
-  if (localStorage.getItem("game") !== null) {
-    load();
-    $.notify("Game Loaded", "info");
-  } else {
-    $.notify("No Save Game Found", "warn");
-  }
-
-} catch (err) {
-  console.error("Invalid Save File");
- // $.notify("Invalid Save File, Reloading", "error");
 }
 
