@@ -1,6 +1,6 @@
-# Mine N' Buy
-
-## What is Mine N' Buy?
+# Mine N' Grind
+> NOTE: GAME IS IN HAITUS WHILE I WORK ON LUMINARY (rpg style game)  
+## What is Mine N' Grind?
 > `Mine N' Buy` Is my First Incremental Game!
 > Using `HTML`, `CSS`, and `JS`.
 This is my First time using JS.
