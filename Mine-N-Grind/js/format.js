@@ -29,3 +29,10 @@ function formatCost(item, cost) {
     }
     document.getElementById(element).style.display = "block";
   }
+function displaySkill(type,id,cost){}
+function removeCreations(){
+  for(const i in data.skills){
+    game.skills[i].created =false;
+  }
+  save();
+}

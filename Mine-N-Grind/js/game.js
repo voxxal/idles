@@ -14,6 +14,9 @@ const scientific = new ADNotations.ScientificNotation();
 //Updating HTML
 
 //Vault Stuff//
+if(game.upgrades.length < data.upgrades.length){
+  game.upgrades.push(data.upgrades);
+}
 function overflow() {
   if (game.vaults.capasity < game.ore) {
     game.ore = game.vaults.capasity;
@@ -52,10 +55,9 @@ function buy(type) {
       if (game.money >= data.mines[game.area][game.mines.next].cost) {
         sell();
         game.mines.sell =
-        data.mines[game.area][game.mines.next].power *
-          game.mines.multiply;
+          data.mines[game.area][game.mines.next].power * game.mines.multiply;
         game.mines.toughness =
-        data.mines[game.area][game.mines.next].toughness *
+          data.mines[game.area][game.mines.next].toughness *
           game.mines.toughMultiply;
         game.mineCost = data.mines[game.area][game.mines.next].cost;
         game.money -= game.mines.cost;
@@ -66,7 +68,8 @@ function buy(type) {
       break;
     case "vault":
       if (game.money >= data.vaults[game.area][game.vaults.next].cost) {
-        game.vaults.capasity = data.vaults[game.area][game.vaults.next].capasity;
+        game.vaults.capasity =
+          data.vaults[game.area][game.vaults.next].capasity;
         game.vaults.cost = data.vaults[game.area][game.vaults.next].cost;
         game.money -= game.vaults.cost;
         game.vaults.next++;
@@ -133,27 +136,41 @@ function buyUpgrade(id) {
         game.minerPower *= data.upgrades[id].buffAmount;
         game.ops *= game.minerPower;
         break;
+      case "area":
+        game.area += 1;
+        game.mines.next = 1;
+        game.pick.next = 0;
+        game.pick.cost = data.upgrades[id].buffAmount;
+        game.pick.level = 1;
+        game.vaults.next = 1;
     }
-    let buttonElement = document.getElementsByClassName("upgradeButton")[id];
+    let buttonElement = document.getElementById(
+      `upgrade_id${data.upgrades[id].id}`
+    );
     buttonElement.parentNode.removeChild(buttonElement);
+    game.upgrades.splice(index, i)
+    console.log(`🛒 Bought Upgrade! ID: ${id}`);
   }
 }
 
 function createUpgrade(id) {
   var newUpgrade = document.createElement("button");
   var buttonContent = document.createTextNode(
-    `${data.upgrades[id].name}
-      ${data.upgrades[id].discription}
-     ${data.upgrades[id].cost}
+    `${game.upgrades[0][id].name}
+      ${game.upgrades[0][id].discription}
+     ${game.upgrades[0][id].cost}
       Coins`
   );
   newUpgrade.className = "upgradeButton";
+  newUpgrade.id = `upgrade_id${game.upgrades[0][id].id}`;
   newUpgrade.onclick = function () {
     buyUpgrade(id);
     return false;
   };
   newUpgrade.appendChild(buttonContent);
   document.getElementById("upgrademenu").appendChild(newUpgrade);
+  console.log(`📦 Created Upgrade! ID: ${id}`);
+
 }
 function activateGenerator() {
   if (game.generators.amount > game.generators.active) {
@@ -178,4 +195,34 @@ function boost(type) {
   }
   updateView();
 }
+if ((game.autosaveSetting = false)) {
+  document.getElementById("autosave").innerHTML = "Turn On Autosave";
+  clearInterval(game.autosave);
+}
+function useSkill(id) {}
+function createSkill(id) {
+  let curSkill = data.skills[id];
+  let newSkill = document.createElement("button");
+  game.skills.push(curSkill);
+  let buttonContent = document.createTextNode(
+    `${curSkill.name} (${curSkill.cooldown} Seconds)`
+  );
+  newSkill.id = `skill_id${curSkill.id}`;
+  newSkill.onclick = function () {
+    useSkill(id);
+    return false;
+  };
+  newSkill.appendChild(buttonContent);
+  document
+    .getElementById(`skills_area${game.skills[id].area}`)
+    .appendChild(newSkill);
+    console.log(`🤹‍♀️ Created Skill! ID: ${id}`);
+    game.skills[id].created = true;
+}
+for(const i in game.upgrades){
+  if(game.upgrades[i].created == true && game.upgrades[i].bought == false){
+    createUpgrade(i);
 
+  };
+
+}

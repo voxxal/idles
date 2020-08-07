@@ -50,6 +50,12 @@ progress[value]::-webkit-progress-value {
   overflow:scroll;
   overflow-x:hidden;
 }
+.skillBox{
+  width:20%;
+  height:10%;
+  overflow-y:scroll;
+  display:inline-block;
+}
 #startArea{
   display:block;
 }
@@ -59,6 +65,9 @@ progress[value]::-webkit-progress-value {
   margin:2px;
   margin-left:10px;
   background:#777;
+}
+#EnergyTab{
+  display:none;
 }
 .stat{
   display: inline;
@@ -70,7 +79,7 @@ progress[value]::-webkit-progress-value {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;

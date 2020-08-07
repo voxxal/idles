@@ -17,46 +17,54 @@ function updateView() {
     setNumberValue("activeGenerators", game.generators.active);
     setNumberValue("generatorsOutOf", game.generators.amount);
     setNumberValue("pickEnergy", game.pick.energy);
-    if (game.pick.next === 6 && game.area === 0) {
+    if(game.area >= 1){
+      document.getElementById("EnergyTab").style.display = "inline"
+    }
+    if (data.pick.names[game.area][game.pick.next] == undefined){
       disable("pickaxebuy");
       setCostValue(
         "pickaxebuy",
-        `Upgrade	&#32;  ${data.pick.names[game.area+1][0][0]}`,
+        `Upgrade	&#32;  ${data.pick.names[game.area+1][0]}`,
         game.pick.cost
       );
     } else {
+      enable("minebuy")
       setCostValue(
+        
         "pickaxebuy",
         `Upgrade	&#32;  ${data.pick.names[game.area][game.pick.next][0]}`,
         game.pick.cost
       );
     }
-    if (game.mines.next === 5 && game.area === 0) {
+    if (data.mines[game.area][game.mines.next] == undefined){
       disable("minebuy");
       setCostValue(
         "minebuy",
         data.mines[game.area+1][0].name,
-        data.mines[game.area +1][0].cost
+        data.mines[game.area+1][0].cost
       );
     } else {
+      enable("minebuy")
       setCostValue(
         "minebuy",
         data.mines[game.area][game.mines.next].name,
         data.mines[game.area][game.mines.next].cost
       );
     }
-    if (game.vaults.next === 6 && game.area === 0) {
+
+    if (data.vaults[game.area][game.vaults.next] == undefined){
       disable("vaultbuy");
       setCostValue(
         "vaultbuy",
-        data.vaults[game.area+1][0].name,
-        data.vaults[game.area+1][0].cost
+        data.mines[game.area+1][0].name,
+        data.mines[game.area+1][0].cost
       );
     } else {
+      enable("minebuy")
       setCostValue(
         "vaultbuy",
-        data.vaults[game.area][game.vaults.next].name,
-        data.vaults[game.area][game.vaults.next].cost
+        data.mines[game.area][game.mines.next].name,
+        data.mines[game.area][game.mines.next].cost
       );
     }
     document.getElementById("vault").value = game.ore;
@@ -68,14 +76,19 @@ function updateView() {
     } else {
       enable("boostPick");
     }
+    for(const i in data.skills){
+      if(game.area >= data.skills[i].area && data.skills[i].created == false){
+        createSkill(i);
+      }
+    }
     //UPGRADE STUFF//
-    for (var i = 0; i < data.upgrades.length; i++) {
+    for (const i in game.upgrades) {
       if (
-        game.money >= data.upgrades[i].criteria &&
-        data.upgrades[i].created == false
+        game.money >= game.upgrades[0][i].criteria &&
+        game.upgrades[0][i].created == false
       ) {
         createUpgrade(i);
-        data.upgrades[i].created = true;
+        game.upgrades[0][i].created = true;
       }
     }
     var css =

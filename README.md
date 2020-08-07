@@ -1,13 +1,5 @@
-# Mine N' Grind
-> NOTE: GAME IS IN HAITUS WHILE I WORK ON LUMINARY (rpg style game)  
-## What is Mine N' Grind?
-> `Mine N' Buy` Is my First Incremental Game!
-> Using `HTML`, `CSS`, and `JS`.
-This is my First time using JS.
-You can check out the Wiki! (That I will build).
-
-## To Do
-- [X] Make The Mines Work
-- [ ] Polish UI
-- [ ] Make Autosave
-- [ ] ~~Get Hevi To Notice~~
+# IDLES
+> All my idle games combined into one page
+## Games
+* Mine N Grind, Created Dec 2, 2019, Updated May 5, 2020 [HIATUS]
+* L∞per, Created Aug 6, 2020, Updated Aug 6, 2020 [IN DEV]

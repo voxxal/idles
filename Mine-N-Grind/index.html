@@ -10,8 +10,21 @@
       type="image/x-icon"
       href="../favicon.ico"
     />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script  src="js/data.js"></script>
+    <script  src = "js/init.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css"  onload="console.log(`👗 CSS Loaded`)"/>
   </head>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+onload="console.log(`📦 jQuery Loaded`)"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+  integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8="
+  crossorigin="anonymous"
+  onload="console.log(`📦 notify.js Loaded (1 dependancy: jQuery)`)"
+></script>
   <script
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/break_infinity.js"
@@ -19,28 +32,23 @@
 <script
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"
+  onload="console.log(`📦 AD_notations Loaded (1 dependancy: break_infinity.js)`)"
 ></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
-  integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8="
-  crossorigin="anonymous"
-></script>
-<script  src="js/format.js"></script>
-<script  src="js/data.js"></script>
-<script src="js/update.js"></script>
-<script  src="js/game.js"></script>
-  <body>
+
+
+<script  src="js/format.js"defer></script>
+
+<script src="js/update.js"defer></script>
+<script  src="js/game.js" onload="console.log(`🎮 Game Loaded`)"defer></script> 
+  <body onload="console.log(`📄 Initializing Webpage`)" defer>
     </div>
     <ul id="navBar">
-      <li onclick="goTo('startArea')">Home</li>
-      <li onclick="goTo('upgrades')">Upgrades</li>
-      <li onclick="goTo('energyContent')">Energy</li>
-      <li onclick="goTo('settings')">Settings</li>
+      <li onclick="goTo('startArea')" id="startTab">Home</li>
+      <li onclick="goTo('upgrades')" id="UpgradeTab">Upgrades</li>
+      <li onclick="goTo('skills')" id="SkillsTab">Skills</li>
+      <li onclick="goTo('energyContent')" id="EnergyTab">Energy</li>
+      <li onclick="goTo('settings')" id="SettingsTab">Settings</li>
+      
     </ul>
     <div id="startArea" class="tabContent">
       <div class="minesell">
@@ -84,6 +92,14 @@
       <div id="upgrades" class="tabContent">
         <fieldset id="upgrademenu">
           <legend>UPGRADES</legend>
+        </fieldset>
+      </div>
+      <div id="skills" class="tabContent">
+        <fieldset class="skillBox" id="skills_area0">
+          <legend>Normal Skills</legend>
+        </fieldset>
+        <fieldset class="skillBox" id="skills_area1">
+          <legend>Energy Skills</legend>
         </fieldset>
       </div>
     <div id="energyContent" class="tabContent">
