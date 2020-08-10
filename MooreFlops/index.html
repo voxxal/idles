@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"></script>
+  <script src="js/save.js" async></script>
+  <script src="js/jobs.js" async></script>
+  <script src="js/elements.js" async></script>
+  <script src="js/game.js" async></script>
+  <script src="js/display.js" async></script>
+  <script src="js/transistors.js" async></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/scrollbar.css" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <title>Moore FLOPS</title>
+</head>
+<body>
+  <div id="moduleOne" class="module">
+    <div id="resourceContainer">
+      <div id="operationsResource">
+        <h1>
+          operations:
+          <span class="showOperations">-</span>
+        </h1>
+      </div>
+      <div id="moneyResource">
+        <h2>money: $<span class="showMoney">-</span></h2>
+      </div>
+      <div id="flops">flops:<span class="showFLOPS"></span></div>
+      <div id="opsButton" onclick="computeClick()" class="button">
+        gain 1 operation
+      </div>
+    </div>
+    <div id="shop">
+      <div id="shopTitle">shop</div>
+      <div
+        id="buyTransistor"
+        class="button"
+        onclick="buyTransistor(game.currentTransistor)"
+      >
+        buy <span class="showTransistorType"></span> transistor for $<span
+          class="showTransistorCost"
+          >-</span
+        >
+      </div>
+      <div id="buyICboard" class="button">
+        buy IC board for $<span class="showICboardCost">-</span>
+      </div>
+    </div>
+    <div id="statsNSettings">
+      <!-- <div id="stats">
+        time played: <span class="showTimePlayed">-</span> <br />
+        total operations made: <span class="showTotalOperations">-</span> OPS
+        <br />
+        total money made: $<span class="showTotalMoney">-</span>
+      </div> -->
+      <div id="settings">
+        <div class="button" id="saveButton" onclick="save()">save game</div>
+        <div class="button" id="exportButton">export game</div>
+        <div class="button" id="importButton">import game</div>
+        <div class="button" id="resetButton" onclick="resetGame()">
+          reset game
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="moduleTwo" class="module">
+    <div id="transistorScreen">
+      <div id="tS-title"><h2>chip builder</h2></div>
+      <div id="tS-row1"><div id="tS-chip1" class="tS-chip"></div><div id="tS-chip2" class="tS-chip"></div><div id="tS-chip3" class="tS-chip"></div></div>
+      <div id="tS-row2"><div id="tS-chip4" class="tS-chip"></div><div id="tS-chip5" class="tS-chip"></div><div id="tS-chip6" class="tS-chip"></div></div>
+      <div id="tS-row3"><div id="tS-chip7" class="tS-chip"></div><div id="tS-chip8" class="tS-chip"></div><div id="tS-chip9" class="tS-chip"></div></div>
+
+    </div>
+    <div id="transistorList">
+
+    </div>
+  </div>
+  <div id="moduleThree " class="module">
+    <div id="jobs">
+      <h1 id="jobsTitle">jobs</h1>
+      <div id="jobListings">
+        
+      </div>
+    </div>
+  </div>
+  <div id="moduleFour" class="module"></div>
+</body>

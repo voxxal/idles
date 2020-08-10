@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/slider.css" />
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/break_infinity.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"
+  ></script>
+  <script src="js/Star.js" async></script>
+  <script src="js/Player.js" async></script>
+  <script src="js/display.js" async></script>
+  <script src="js/main.js" async></script>
+</head>
+<body>
+  <div id="leftWing">
+    <div id="resorces">
+      <h1 id="energy" class="shine">energy: <span class="^energy">-</span></h1>
+      <h2 id="money" class="shine">money: $<span class="^money">-</span></h2>
+      <p id="dysons">dysons: <span class="^dysons">-</span></p>
+      <p id="dysonStats">power: <span id="^dysonPower">-</span><br /></p>
+    </div>
+    <div class="button" onclick="game.buyDyson()">buy dyson for <span class="^dysonCost">-</span>$</div>
+  </div>
+  <div id="starContainer">
+    <div id="starData">
+      <h1>
+        <span class="^starName">name</span> -
+        <span class="^starSize">100</span>%
+      </h1>
+      <p id="starMass">mass: <span class="^starMass">-</span></p>
+    </div>
+    <div id="star"></div>
+  </div>
+  <div id="rightWing">
+    <div id="selling">
+      <h1 class="shine">sell energy</h1>
+      <h3 id="sellAmmount">sell <span id="sellPercentage" class="shine ^sellPercentage">-</span>%</h3>
+      <input type="range" min="0" max="100" value="50" id="sellSlider" />
+      <div class="button" onclick="game.sellEnergy(document.getElementById('sellSlider').value)">sell <span class="^sellEnergy">-</span> energy for <span class="^sellMoney">-</span>$</div>
+    </div>
+  </div>
+</body>
