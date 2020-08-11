@@ -1,5 +1,4 @@
 const standard = new ADNotations.StandardNotation();
-console.log(standard);
 const displayValue = (element, data) => {
   if (typeof element == "object") {
     for (var i in element) {
@@ -22,30 +21,53 @@ const dge = {
     return document.getElementById(ele);
   },
 };
+const notify = () => {
+  $.notify.addStyle("clean", {
+    html: "<span data-notify-text/>",
+    classes: {
+      base: {
+        "white-space": "nowrap",
+        padding: "5px",
+      },
+      success: {
+        color: "#1eff00",
+      },
+      error: {
+        color: "red",
+      },
+      blackMatter:{
+        color:"white",
+        "text-shadow":"0px 0px 10px white"
+      }
+    },
+  });
+  $.notify.defaults({ style: "clean", globalPosition: "bottom center" });
+};
+notify();
 const update = () => {
-  displayValue(dge.byClassName("^starName"), game.star.name);
-  displayValue(dge.byClassName("^energy"), game.energy);
-  displayValue(dge.byClassName("^money"), game.money);
-  displayValue(dge.byClassName("^starMass"), game.star.mass);
-  displayValue(dge.byClassName("^starSize"), game.star.getSize() * 100);
-  displayValue(dge.byClassName("^dysons"), game.dysons);
-  displayValue(dge.byClassName("^dysonCost"),game.dyson.cost)
-  displayValue(
-    dge.byClassName("^sellPercentage"),
-    dge.byId("sellSlider").value
-  );
-  displayValue(
-    dge.byClassName("^sellEnergy"),
-    ((dge.byId("sellSlider").value / 100) * game.energy).toFixed(0)
-  );
-  displayValue(
-    dge.byClassName("^sellMoney"),
-    ((dge.byId("sellSlider").value / 100) * game.energy) / 100
-  );
+  let sellSlider = dge.byId("sellSlider");
+  let toDisplay = [
+    ["starName", game.star.name],
+    ["starMass", game.star.mass],
+    ["starSize", game.star.getSize() * 100],
+    ["energy", game.energy],
+    ["money", game.money],
+    ["dysons", game.dysons],
+    ["dysonCost", game.dyson.cost],
+    ["dysonPower", game.dyson.power],
+    ["dysonEfficiency", game.dyson.efficiency],
+    ["sellPercentage", sellSlider.value],
+    ["sellEnergy", ((sellSlider.value / 100) * game.energy).toFixed(0)],
+    ["sellMoney", ((sellSlider.value / 100) * game.energy) / 100],
+    ["blackMatter", game.blackMatter],
+  ];
+  for (let i in toDisplay) {
+    displayValue(dge.byClassName(`^${toDisplay[i][0]}`), toDisplay[i][1]);
+  }
   editAttrabute(
     dge.byId("star"),
     "style",
-    `transform:scale(${game.star.getSize()});background:rgb(255,${
+    `transform:scale(${game.star.getSize() + 0.05});background:rgb(255,${
       game.star.getSize() * 255
     },0)`
   );

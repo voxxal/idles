@@ -11,8 +11,11 @@
     type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"
   ></script>
-  <script src="js/Star.js" async></script>
-  <script src="js/Player.js" async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+  <script src="js/save.js" async></script>
+  <script src="js/classes/Star.js" async></script>
+  <script src="js/classes/Player.js" async></script>
   <script src="js/display.js" async></script>
   <script src="js/main.js" async></script>
 </head>
@@ -21,10 +24,22 @@
     <div id="resorces">
       <h1 id="energy" class="shine">energy: <span class="^energy">-</span></h1>
       <h2 id="money" class="shine">money: $<span class="^money">-</span></h2>
+      <h2 id="blackMatter" class="superShine">
+        black matter: <span class="^blackMatter">-</span>
+      </h2>
       <p id="dysons">dysons: <span class="^dysons">-</span></p>
-      <p id="dysonStats">power: <span id="^dysonPower">-</span><br /></p>
+      <p id="dysonStats">
+        power: <span class="^dysonPower">-</span><br />efficiency:
+        <span class="^dysonEfficiency"></span>
+      </p>
     </div>
-    <div class="button" onclick="game.buyDyson()">buy dyson for <span class="^dysonCost">-</span>$</div>
+    <div class="button" onclick="game.buyDyson()">
+      buy dyson for $<span class="^dysonCost">-</span>
+    </div>
+    <br />
+    <div class="button" onclick="game.buyFactory()">
+      buy factory for <span class="^dyson"></span>
+    </div>
   </div>
   <div id="starContainer">
     <div id="starData">
@@ -39,9 +54,17 @@
   <div id="rightWing">
     <div id="selling">
       <h1 class="shine">sell energy</h1>
-      <h3 id="sellAmmount">sell <span id="sellPercentage" class="shine ^sellPercentage">-</span>%</h3>
+      <h3 id="sellAmmount">
+        sell <span id="sellPercentage" class="shine ^sellPercentage">-</span>%
+      </h3>
       <input type="range" min="0" max="100" value="50" id="sellSlider" />
-      <div class="button" onclick="game.sellEnergy(document.getElementById('sellSlider').value)">sell <span class="^sellEnergy">-</span> energy for <span class="^sellMoney">-</span>$</div>
+      <div
+        class="button"
+        onclick="game.sellEnergy(document.getElementById('sellSlider').value)"
+      >
+        sell <span class="^sellEnergy">-</span> energy for
+        $<span class="^sellMoney">-</span>
+      </div>
     </div>
   </div>
 </body>
