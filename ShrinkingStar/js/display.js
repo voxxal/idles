@@ -35,10 +35,10 @@ const notify = () => {
       error: {
         color: "red",
       },
-      blackMatter:{
-        color:"white",
-        "text-shadow":"0px 0px 10px white"
-      }
+      blackMatter: {
+        color: "white",
+        "text-shadow": "0px 0px 10px white",
+      },
     },
   });
   $.notify.defaults({ style: "clean", globalPosition: "bottom center" });
@@ -56,14 +56,30 @@ const update = () => {
     ["dysonCost", game.dyson.cost],
     ["dysonPower", game.dyson.power],
     ["dysonEfficiency", game.dyson.efficiency],
+    ["factories", game.factories],
+    ["factoryPower", game.factory.power],
+    ["factoryEfficiency", game.factory.efficiency],
+    ["factoryCost", game.factory.cost],
     ["sellPercentage", sellSlider.value],
-    ["sellEnergy", ((sellSlider.value / 100) * game.energy).toFixed(0)],
-    ["sellMoney", ((sellSlider.value / 100) * game.energy) / 100],
+    ["sellEnergy", (sellSlider.value / 100) * game.energy],
+    [
+      "sellMoney",
+      ((sellSlider.value / 100) * game.energy) / game.energyToMoney,
+    ],
     ["blackMatter", game.blackMatter],
+    ["upgradeDysonPower", game.upgrades.dysonPower.price()],
+    ["upgradeDysonEfficiency", game.upgrades.dysonEfficiency.price()],
+    ["upgradeFactoryPower", game.upgrades.factoryPower.price()],
+    ["upgradeFactoryEfficiency", game.upgrades.factoryEfficiency.price()],
+    ["blackMatterSellCashRatio", game.upgrades.sellCash.price()],
   ];
   for (let i in toDisplay) {
     displayValue(dge.byClassName(`^${toDisplay[i][0]}`), toDisplay[i][1]);
   }
+  displayValue(
+    dge.byClassName("title"),
+    `Shrinking Star - ${game.energy} Energy`
+  );
   editAttrabute(
     dge.byId("star"),
     "style",

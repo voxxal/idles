@@ -1,8 +1,8 @@
 class Star {
-  constructor(name, mass) {
+  constructor(name, mass, maxMass = mass) {
     this.name = name;
     this.mass = mass;
-    this.maxMass = mass;
+    this.maxMass = maxMass;
   }
   getMass() {
     return this.mass;

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <head>
+  <title class="title">Shrinking Star - 0 Energy</title>
+  <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/slider.css" />
+  <link rel="stylesheet" type="text/css" href="css/scrollbar.css" />
   <script
     type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/break_infinity.js"
@@ -14,10 +17,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
   <script src="js/save.js" async></script>
+  <script src="js/classes/Upgrade.js" async></script>
   <script src="js/classes/Star.js" async></script>
   <script src="js/classes/Player.js" async></script>
   <script src="js/display.js" async></script>
   <script src="js/main.js" async></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-175177240-1"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-175177240-1");
+  </script>
 </head>
 <body>
   <div id="leftWing">
@@ -36,9 +54,20 @@
     <div class="button" onclick="game.buyDyson()">
       buy dyson for $<span class="^dysonCost">-</span>
     </div>
+    <div class="button" onclick="game.buyMaxDyson()">
+      buy max
+    </div>
     <br />
+    <p id="factories">factories: <span class="^factories">-</span></p>
+    <p id="factoryStats">
+      power: <span class="^factoryPower">-</span><br />efficiency:
+      <span class="^factoryEfficiency"></span>
+    </p>
     <div class="button" onclick="game.buyFactory()">
-      buy factory for <span class="^dyson"></span>
+      buy factory for $<span class="^factoryCost">-</span>
+    </div>
+    <div class="button" onclick="game.buyMaxFactory()">
+      buy max
     </div>
   </div>
   <div id="starContainer">
@@ -62,8 +91,61 @@
         class="button"
         onclick="game.sellEnergy(document.getElementById('sellSlider').value)"
       >
-        sell <span class="^sellEnergy">-</span> energy for
-        $<span class="^sellMoney">-</span>
+        sell <span class="^sellEnergy">-</span> energy for $<span
+          class="^sellMoney"
+          >-</span
+        >
+      </div>
+    </div>
+    <h1 class="shine">upgrades</h1>
+    <div id="upgrades">
+      <div id="dysonUpgrades">
+        <div
+          id="dysonPowerUpgrade"
+          class="button"
+          onclick="game.buyUpgrade('dysonPower')"
+        >
+          dyson power upgrade for $<span class="^upgradeDysonPower">-</span>
+        </div>
+        <br />
+        <div
+          id="dysonEfficiencyUpgrade"
+          class="button"
+          onclick="game.buyUpgrade('dysonEfficiency')"
+        >
+          dyson efficiency upgrade for $<span class="^upgradeDysonEfficiency"
+            >-</span
+          >
+        </div>
+      </div>
+      <div id="factoryUpgrades">
+        <div
+          id="factoryPowerUpgrade"
+          class="button"
+          onclick="game.buyUpgrade('factoryPower')"
+        >
+          factory power upgrade for $<span class="^upgradeFactoryPower">-</span>
+        </div>
+        <br />
+        <div
+          id="factoryEfficiencyUpgrade"
+          class="button"
+          onclick="game.buyUpgrade('factoryEfficiency')"
+        >
+          factory efficiency upgrade for $<span
+            class="^upgradeFactoryEfficiency"
+            >-</span
+          >
+        </div>
+      </div>
+      <h1 class="superShine">black matter upgrades</h1>
+      <div
+        id="blackMatterSellCashRatio"
+        class="button superShine"
+        onclick="game.buyUpgrade('sellCash')"
+      >
+        buy sell cash ratio for
+        <span class="^blackMatterSellCashRatio">-</span> BLACK MATTER
       </div>
     </div>
   </div>
