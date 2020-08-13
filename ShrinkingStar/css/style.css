@@ -98,3 +98,9 @@ body {
     background-position-x: 480px;
   }
 }
+a{
+  color:white;
+}
+a:visited{
+  color:grey;
+}

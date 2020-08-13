@@ -9,22 +9,22 @@ class Player {
       dysonPower: new Upgrade(
         "Dyson Power",
         (level) => Math.pow(10, level + 2),
-        (level) => (game.dyson.power = Math.pow(2, level + 1))
+        (level) => (game.dyson.power = Math.pow(2, level))
       ),
       dysonEfficiency: new Upgrade(
         "Dyson Efficiency",
         (level) => Math.pow(10, level + 2),
-        (level) => (game.dyson.efficiency = Math.pow(2, level + 1))
+        (level) => (game.dyson.efficiency = Math.pow(2, level))
       ),
       factoryPower: new Upgrade(
         "Factory Power",
         (level) => Math.pow(20, level + 2),
-        (level) => (game.factory.power = Math.pow(2, level + 1))
+        (level) => (game.factory.power = Math.pow(2, level))
       ),
       factoryEfficiency: new Upgrade(
         "Factory Efficiency",
         (level) => Math.pow(20, level + 2),
-        (level) => (game.factory.efficiency = Math.pow(2, level + 1))
+        (level) => (game.factory.efficiency = Math.pow(2, level))
       ),
       sellCash: new BlackMatterUpgrade(
         "Sell Cash Ratio",
@@ -93,16 +93,22 @@ class Player {
       this.getRandomDigit() + this.getRandomDigit()
     }`;
     this.blackMatter += Math.floor(Math.log10(this.star.maxMass));
-    this.star = new Star(name, (this.star.maxMass * (this.energy + 10)) / 1000);
+    //Math.log2(this.totalBlackMatter+2e4)*1e6
+    this.star = new Star(
+      name,
+      Math.log2(this.energy * 1e6) * this.star.maxMass
+    );
     $.notify(`lost ${this.dysons} dysons and ${this.factories} factories`);
     this.dysons = 0;
     this.factories = 0;
+    this.dyson.cost = 10;
     this.factory.cost = 1e4;
   }
   buyDyson() {
     if (game.money >= game.dyson.cost) {
       this.dysons++;
       game.money -= game.dyson.cost;
+      game.dyson.cost *= 1.02; //FIX SCALING THIS SUCKS
       return true;
     }
     return false;
@@ -160,6 +166,44 @@ class Player {
       energy: this.energy,
       dysons: this.dysons,
       factories: this.factories,
+      energyToMoney: this.energyToMoney,
+      upgrades: {
+        dysonPower: this.upgrades.dysonPower.level,
+        dysonEfficiency: this.upgrades.dysonEfficiency.level,
+        factoryPower: this.upgrades.factoryPower.level,
+        factoryEfficiency: this.upgrades.factoryEfficiency.level,
+        sellCash: this.upgrades.sellCash.level,
+      },
+      factory: {
+        power: this.factory.power,
+        efficiency: this.factory.efficiency,
+        cost: this.factory.cost,
+      },
+      dyson: {
+        power: this.dyson.power,
+        efficiency: this.dyson.efficiency,
+        cost: this.dyson.cost,
+      },
+      blackMatter: this.blackMatter,
+      star: {
+        name: this.star.name,
+        mass: this.star.mass,
+        maxMass: this.star.maxMass,
+      },
     };
+  }
+  load(data) {
+    this.money = data.money;
+    this.energy = data.energy;
+    this.dysons = data.dysons;
+    this.factories = data.factories;
+    this.energyToMoney = data.energyToMoney;
+    for (let i in this.upgrades) {
+      this.upgrades[i].level = data.upgrades[i];
+    }
+    this.factory = data.factory;
+    this.dyson = data.dyson;
+    this.blackMatter = data.blackMatter;
+    this.star = new Star(data.star.name, data.star.mass, data.star.maxMass);
   }
 }
