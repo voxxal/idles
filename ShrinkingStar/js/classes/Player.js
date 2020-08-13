@@ -108,10 +108,10 @@ class Player {
     return false;
   }
   buyMaxDyson() {
-    while(this.buyDyson());
+    while (this.buyDyson());
   }
   buyMaxFactory() {
-    while(this.buyFactory());
+    while (this.buyFactory());
   }
   buyFactory() {
     if (game.money >= game.factory.cost) {
@@ -136,9 +136,12 @@ class Player {
         (this.factories * this.factory.power) / (this.factory.efficiency / 10);
       this.dysons += (this.factories * this.factory.power) / 20;
     }
-    this.star.name !== "sun"
+    this.star.name !== "sun" //remeber to hide black matter upgrades
       ? (dge.byId("blackMatter").style.display = "block")
       : (dge.byId("blackMatter").style.display = "none");
+    this.star.name !== "sun"
+      ? (dge.byId("blackMatterUpgrades").style.display = "block")
+      : (dge.byId("blackMatterUpgrades").style.display = "none");
   }
   sellEnergy(percentage) {
     $.notify(
