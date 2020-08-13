@@ -36,7 +36,7 @@ class Player {
     this.factory = {
       power: 1,
       efficiency: 1,
-      cost: 1e4,
+      cost: 1e3,
     };
     this.dyson = {
       power: 1,
@@ -102,7 +102,7 @@ class Player {
     this.dysons = 0;
     this.factories = 0;
     this.dyson.cost = 10;
-    this.factory.cost = 1e4;
+    this.factory.cost = 1e3;
   }
   buyDyson() {
     if (game.money >= game.dyson.cost) {
