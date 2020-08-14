@@ -52,6 +52,7 @@ const update = () => {
     ["starSize", game.star.getSize() * 100],
     ["energy", game.energy],
     ["money", game.money],
+    ["energyToMoney",game.energyToMoney],
     ["dysons", game.dysons],
     ["dysonCost", game.dyson.cost],
     ["dysonPower", game.dyson.power],
@@ -60,6 +61,12 @@ const update = () => {
     ["factoryPower", game.factory.power],
     ["factoryEfficiency", game.factory.efficiency],
     ["factoryCost", game.factory.cost],
+    ["dysonsPerSecond", game.factories * game.factory.power],
+    [
+      "energyDepletedPerSecond",
+      ((game.factories * game.factory.power) / (game.factory.efficiency / 10)) *
+        20,
+    ],
     ["sellPercentage", sellSlider.value],
     ["sellEnergy", (sellSlider.value / 100) * game.energy],
     [

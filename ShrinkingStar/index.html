@@ -93,7 +93,9 @@
     <p id="factories">factories: <span class="^factories">-</span></p>
     <p id="factoryStats">
       power: <span class="^factoryPower">-</span><br />efficiency:
-      <span class="^factoryEfficiency"></span>
+      <span class="^factoryEfficiency">-</span><br />
+      dysons per second: <span class="^dysonsPerSecond">-</span><br />energy
+      depleted per second: <span class="^energyDepletedPerSecond">-</span>
     </p>
     <div class="button" onclick="game.buyFactory()">
       buy factory for $<span class="^factoryCost">-</span>
@@ -137,7 +139,8 @@
           class="button"
           onclick="game.buyUpgrade('dysonPower')"
         >
-          dyson power upgrade for $<span class="^upgradeDysonPower">-</span>
+          dyson power upgrade for $<span class="^upgradeDysonPower">-</span><br>
+          <span class="upgradeDiscription">increases mass drained per second</span>
         </div>
         <br />
         <div
@@ -147,7 +150,8 @@
         >
           dyson efficiency upgrade for $<span class="^upgradeDysonEfficiency"
             >-</span
-          >
+          ><br>
+          <span class="upgradeDiscription">gets more energy per unit of mass</span>
         </div>
       </div>
       <div id="factoryUpgrades">
@@ -156,7 +160,8 @@
           class="button"
           onclick="game.buyUpgrade('factoryPower')"
         >
-          factory power upgrade for $<span class="^upgradeFactoryPower">-</span>
+          factory power upgrade for $<span class="^upgradeFactoryPower">-</span><br>
+          <span class="upgradeDiscription">makes more dysons per second</span>
         </div>
         <br />
         <div
@@ -167,7 +172,7 @@
           factory efficiency upgrade for $<span
             class="^upgradeFactoryEfficiency"
             >-</span
-          >
+          ><br><span class="upgradeDiscription">uses less energy</span>
         </div>
       </div>
       <div id="blackMatterUpgrades">
@@ -178,12 +183,13 @@
           onclick="game.buyUpgrade('sellCash')"
         >
           buy sell cash ratio for
-          <span class="^blackMatterSellCashRatio">-</span> BLACK MATTER
+          <span class="^blackMatterSellCashRatio">-</span> BLACK MATTER <br>
+          <span class="upgradeDiscription superShine">energy / <span class="^energyToMoney">100</span> = money
         </div>
       </div>
     </div>
   </div>
   <div style="position: absolute; bottom: 0;">
-    <a href="https://discord.gg/tvPUs9W">join me on discord</a>
+    <a href="https://discord.gg/dkxKvdv">join me on discord</a>
   </div>
 </body>

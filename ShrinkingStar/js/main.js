@@ -4,3 +4,5 @@ if (localStorage.getItem("ShrinkingStarGame")) {
 }
 setInterval("update()", 50);
 setInterval("save(game.save(),'ShrinkingStarGame')", 5000);
+// window.addEventListener('blur', game.unfocus());
+// window.addEventListener('focus', game.focus());

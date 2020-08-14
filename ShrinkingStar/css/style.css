@@ -98,6 +98,11 @@ body {
     background-position-x: 480px;
   }
 }
+.upgradeDiscription{
+  font-size:12px;
+  float:left;
+  margin-top:20px;
+}
 a{
   color:white;
 }

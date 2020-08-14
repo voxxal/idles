@@ -5,6 +5,11 @@ class Player {
     this.dysons = 0;
     this.factories = 0;
     this.energyToMoney = 100;
+    this.probes = 0;
+    this.probe = {
+      cost:1e7,
+      speed:1,
+    }
     this.upgrades = {
       dysonPower: new Upgrade(
         "Dyson Power",
@@ -33,6 +38,9 @@ class Player {
         (level) => (game.energyToMoney = 100 - 5 * level) // buy [UPGRADE] for X BLACK MATTER
       ),
     };
+    this.blackMatterUpgrades = [
+
+    ]
     this.factory = {
       power: 1,
       efficiency: 1,
@@ -129,8 +137,8 @@ class Player {
     return false;
   }
   tick() {
-    this.star.mass -= (this.dysons * this.dyson.power) / this.dyson.efficiency;
-    this.energy += this.dysons * this.dyson.power;
+    this.star.mass -= (this.dysons * this.dyson.power);
+    this.energy += this.dysons * this.dyson.power*this.dyson.efficiency;
     this.star.mass <= 0 ? this.newStar() : null;
     //factory
 
@@ -205,5 +213,15 @@ class Player {
     this.dyson = data.dyson;
     this.blackMatter = data.blackMatter;
     this.star = new Star(data.star.name, data.star.mass, data.star.maxMass);
+  }
+  unfocus(){
+    this.offTabTime = Date.now();
+  }
+  focus(){
+    this.offlineTime = Date.now() - this.offTabTime;
+    console.log(`was unfocused for ${this.offlineTime} ms`)
+    for(let i; i <= (this.offlineTime/20);i++){
+      this.tick();
+    } 
   }
 }
