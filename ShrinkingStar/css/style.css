@@ -9,10 +9,34 @@ body {
   width: 100%;
   color: white;
   font-family: "Major Mono Display", monospace;
+  overflow: hidden;
 }
 .superShine {
   text-shadow: 1px 1px 0px #ffffff;
   color: black;
+}
+#notation{
+  padding:10px;
+}
+#notationSelect{
+  background:black;
+  color:white;
+  border-radius:10px;
+}
+.section{
+  height:95%;
+}
+ul {
+  list-style-type: none;
+  margin:0px;
+  padding:0.5%;
+  width:100%;
+}
+li {
+  display: inline;
+  margin:0.5px;
+  padding: 0 25px;
+  transition: 200ms;
 }
 #blackMatter {
   color: black;
@@ -20,6 +44,16 @@ body {
 #starContainer {
   place-items: center;
   display: inline-grid;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 25%;
+}
+#ascendContainer{
+  place-items: center;
+  display:none;
+  /* display: inline-grid;  */
   position: absolute;
   left: 0;
   right: 0;
