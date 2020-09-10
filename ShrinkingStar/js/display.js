@@ -1,9 +1,11 @@
-const standard = new ADNotations.StandardNotation();
-const displayValue = (element, data) => {
+
+const displayValue = (element, data, toFixed = 0) => {
   if (typeof element == "object") {
     for (var i in element) {
       typeof data == "number"
-        ? (element[i].innerHTML = standard.format(data, 2, 2).toLowerCase())
+        ? (element[i].innerHTML = game.notation
+            .format(data, 2, toFixed)
+            .toLowerCase())
         : (element[i].innerHTML = data);
     }
   } else {
@@ -45,26 +47,34 @@ const notify = () => {
 };
 notify();
 const update = () => {
+  let selectedNotation = document.getElementById("notationSelect").options[document.getElementById("notationSelect").selectedIndex].value;
+  let lowerBound = 0;
+  let upperBound = game.stars.length - 1;
   let sellSlider = dge.byId("sellSlider");
   let toDisplay = [
-    ["starName", game.star.name],
-    ["starMass", game.star.mass],
-    ["starSize", game.star.getSize() * 100],
-    ["energy", game.energy],
-    ["money", game.money],
-    ["energyToMoney",game.energyToMoney],
-    ["dysons", game.dysons],
-    ["dysonCost", game.dyson.cost],
+    ["starName", game.stars[game.currentStar].name],
+    ["starMass", game.stars[game.currentStar].mass],
+    ["starDensity", game.stars[game.currentStar].multiplier.energy,0],
+    ["starSize", game.stars[game.currentStar].getSize() * 100, 2],
+    ["energy", game.energy, 0],
+    ["money", game.money, 2],
+    ["energyToMoney", game.energyToMoney],
+    ["dysons", game.stars[game.currentStar].dysons],
+    ["dysonCost", game.stars[game.currentStar].cost.dyson, 2],
     ["dysonPower", game.dyson.power],
     ["dysonEfficiency", game.dyson.efficiency],
-    ["factories", game.factories],
+    ["factories", game.stars[game.currentStar].factories],
     ["factoryPower", game.factory.power],
     ["factoryEfficiency", game.factory.efficiency],
-    ["factoryCost", game.factory.cost],
-    ["dysonsPerSecond", game.factories * game.factory.power],
+    ["factoryCost", game.stars[game.currentStar].cost.factory, 2],
+    [
+      "dysonsPerSecond",
+      game.stars[game.currentStar].factories * game.factory.power,
+    ],
     [
       "energyDepletedPerSecond",
-      ((game.factories * game.factory.power) / (game.factory.efficiency / 10)) *
+      ((game.stars[game.currentStar].factories * game.factory.power) /
+        (game.factory.efficiency / 10)) *
         20,
     ],
     ["sellPercentage", sellSlider.value],
@@ -72,16 +82,26 @@ const update = () => {
     [
       "sellMoney",
       ((sellSlider.value / 100) * game.energy) / game.energyToMoney,
+      2,
     ],
     ["blackMatter", game.blackMatter],
-    ["upgradeDysonPower", game.upgrades.dysonPower.price()],
-    ["upgradeDysonEfficiency", game.upgrades.dysonEfficiency.price()],
-    ["upgradeFactoryPower", game.upgrades.factoryPower.price()],
-    ["upgradeFactoryEfficiency", game.upgrades.factoryEfficiency.price()],
-    ["blackMatterSellCashRatio", game.upgrades.sellCash.price()],
+    ["upgradeDysonPower", game.upgrades.dysonPower.price(), 2],
+    ["upgradeDysonEfficiency", game.upgrades.dysonEfficiency.price(), 2],
+    ["upgradeFactoryPower", game.upgrades.factoryPower.price(), 2],
+    ["upgradeFactoryEfficiency", game.upgrades.factoryEfficiency.price(), 2],
+    ["blackMatterSellCashRatio", game.upgrades.sellCash.price(), 2],
+    ["probes", game.probes],
+    ["probeCost", game.probe.cost],
   ];
   for (let i in toDisplay) {
-    displayValue(dge.byClassName(`^${toDisplay[i][0]}`), toDisplay[i][1]);
+    !toDisplay[i][2]
+      ? (toDisplay[i][2] = 0)
+      : (toDisplay[i][2] = toDisplay[i][2]);
+    displayValue(
+      dge.byClassName(`^${toDisplay[i][0]}`),
+      toDisplay[i][1],
+      toDisplay[i][2]
+    );
   }
   displayValue(
     dge.byClassName("title"),
@@ -90,9 +110,16 @@ const update = () => {
   editAttrabute(
     dge.byId("star"),
     "style",
-    `transform:scale(${game.star.getSize() + 0.05});background:rgb(255,${
-      game.star.getSize() * 255
-    },0)`
+    `transform:scale(${
+      game.stars[game.currentStar].getSize()*game.stars[game.currentStar].multiplier.mass + 0.05
+    });background:rgb(${game.stars[game.currentStar].getColor()[0]+25},${game.stars[game.currentStar].getColor()[1]},${game.stars[game.currentStar].getColor()[2]})`
   );
+  game.currentStar == lowerBound
+    ? (document.getElementById("leftArrow").style.color =  "transparent")
+    : (document.getElementById("leftArrow").style.color = "white");
+  game.currentStar == upperBound
+    ? (document.getElementById("rightArrow").style.color = "transparent")
+    : (document.getElementById("rightArrow").style.color =  "white");
   game.tick();
+  game.selectNotation(selectedNotation);
 };

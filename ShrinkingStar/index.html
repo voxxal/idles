@@ -49,6 +49,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
   <script src="js/save.js"></script>
+  <script src="js/classes/StarType.js"></script>
   <script src="js/classes/Upgrade.js"></script>
   <script src="js/classes/Star.js"></script>
   <script src="js/classes/Player.js"></script>
@@ -70,6 +71,11 @@
   </script>
 </head>
 <body>
+  <ul id="navBar">
+    <li onclick="goTo('main')" >main</li>
+    <li onclick="goTo('options')">options</li>
+  </ul>
+  <div id="main" class="section">
   <div id="leftWing">
     <div id="resorces">
       <h1 id="energy" class="shine">energy: <span class="^energy">-</span></h1>
@@ -83,10 +89,10 @@
         <span class="^dysonEfficiency"></span>
       </p>
     </div>
-    <div class="button" onclick="game.buyDyson()">
+    <div class="button" onclick="game.buyDyson(game.currentStar)">
       buy dyson for $<span class="^dysonCost">-</span>
     </div>
-    <div class="button" onclick="game.buyMaxDyson()">
+    <div class="button" onclick="game.buyMaxDyson(game.currentStar)">
       buy max
     </div>
     <br />
@@ -97,22 +103,31 @@
       dysons per second: <span class="^dysonsPerSecond">-</span><br />energy
       depleted per second: <span class="^energyDepletedPerSecond">-</span>
     </p>
-    <div class="button" onclick="game.buyFactory()">
+    <div class="button" onclick="game.buyFactory(game.currentStar)">
       buy factory for $<span class="^factoryCost">-</span>
     </div>
-    <div class="button" onclick="game.buyMaxFactory()">
+    <div class="button" onclick="game.buyMaxFactory(game.currentStar)">
       buy max
     </div>
+    <p id="probes">probes: <span class="^probes">-</span></p>
+  <div class="button" onclick="game.buyProbe()">buy probe for $<span class="^probeCost">-</span></div>
   </div>
   <div id="starContainer">
     <div id="starData">
       <h1>
+        <span class="left" onclick="game.changeStar(-1)" id="leftArrow">	&lt;</span>
         <span class="^starName">name</span> -
         <span class="^starSize">100</span>%
+        <span class="right" onclick="game.changeStar(1)" id="rightArrow">	&gt;</span>
       </h1>
-      <p id="starMass">mass: <span class="^starMass">-</span></p>
+      <p id="starMass">mass: <span class="^starMass">-</span> ​ ​​  density: <span class="^starDensity">-</span></p>
     </div>
     <div id="star"></div>
+  </div>
+  <div id="ascendContainer">
+    <canvas id="ascend">
+
+    </canvas>
   </div>
   <div id="rightWing">
     <div id="selling">
@@ -176,7 +191,7 @@
         </div>
       </div>
       <div id="blackMatterUpgrades">
-        <h1 class="superShine">black matter upgrades</h1>
+        <div class="button"><h1 class="superShine">ASCEND</h1></div>
         <div
           id="blackMatterSellCashRatio"
           class="button superShine"
@@ -188,6 +203,23 @@
         </div>
       </div>
     </div>
+  </div>
+  </div>
+  <div id="options">
+    <div id="notation">
+    <h1 class="shine">
+      notation
+    </h1>
+    <select name="notation" id="notationSelect">
+      <option value="Standard">standard</option>
+      <option value="Scientific">scientific</option>
+      <option value="Engineering">engineering</option>
+      <option value="Letters">letters</option>
+      <option value="Mixed Scientific">mixed scientific</option>
+      <option value="Mixed Engineering">mixed engineering</option>
+  </select>
+  </div>
+  
   </div>
   <div style="position: absolute; bottom: 0;">
     <a href="https://discord.gg/dkxKvdv">join me on discord</a>
