@@ -332,7 +332,7 @@ class Player {
       this.stars[0] = new Star(
         data.star.name,
         data.star.mass,
-        data.stars.maxMass,
+        data.star.maxMass,
         this.starTypes.normal.multiplier,
         this.starTypes.normal.alpha
       );
