@@ -1,6 +1,11 @@
 class Player {
   constructor() {
     let root = this;
+    this.starTypes = {
+      normal: new StarType(1, [1, 1, 0], { mass: 1, energy: 1 }),
+      compact: new StarType(0.2, [0, 0, 1], { mass: 1, energy: 2 }),
+      small: new StarType(0.3, [1, 0, 0], { mass: 0.5, energy: 1 }),
+    };
     this.notation = new ADNotations.StandardNotation();
     this.energy = 0;
     this.money = 10;
@@ -69,15 +74,21 @@ class Player {
     this.factory = {
       power: 1,
       efficiency: 1,
-      cost: 1e3,
     };
     this.dyson = {
       power: 1,
       efficiency: 1,
-      cost: 10,
     };
     this.blackMatter = 0;
-    this.stars = [new Star("sun",1e6,1e6,{mass: 1, energy: 1},[1,1,0])];
+    this.stars = [
+      new Star(
+        "sun",
+        1e6,
+        1e6,
+        this.starTypes.normal.multiplier,
+        this.starTypes.normal.alpha
+      ),
+    ];
     this.currentStar = 0;
   }
   getRandomLetter() {
@@ -147,17 +158,12 @@ class Player {
     }`;
   }
   newStar(i) {
-    let starTypes = {
-      normal: new StarType(1, [1, 1, 0], { mass: 1, energy: 1 }),
-      compact: new StarType(0.2, [0, 0, 1], { mass: 1, energy: 2 }),
-      small: new StarType(0.3, [1, 0, 0], { mass: 0.5, energy: 1 }),
-    };
     let newStarTypes = [];
     let name = this.randomName();
     this.blackMatter += Math.floor(Math.log10(this.stars[i].maxMass));
-    for (let i in starTypes) {
-      if (starTypes[i].chance > Math.random()) {
-        newStarTypes.push(starTypes[i].data(i));
+    for (let i in this.starTypes) {
+      if (this.starTypes[i].chance > Math.random()) {
+        newStarTypes.push(this.starTypes[i].data(i));
         console.log(newStarTypes);
       }
     }
@@ -171,7 +177,6 @@ class Player {
       }
       for (let k in newStarTypes[i].alpha) {
         newStarAlpha[k] += newStarTypes[i].alpha[k];
-        
       }
       // add raysplaceinspace easter egg //OFLINE PROGRESS
     }
@@ -192,7 +197,13 @@ class Player {
       newStarMult.mass;
 
     //Math.log2(this.totalBlackMatter+2e4)*1e6
-    this.stars[i] = new Star(name, starMass, starMass, newStarMult, newStarAlpha);
+    this.stars[i] = new Star(
+      name,
+      starMass,
+      starMass,
+      newStarMult,
+      newStarAlpha
+    );
   }
   buyDyson(i) {
     if (game.money >= game.stars[i].cost.dyson) {
@@ -252,50 +263,80 @@ class Player {
     this.energy -= (percentage / 100) * this.energy;
   }
   save() {
-    return {
-      money: this.money,
-      energy: this.energy,
-      dysons: this.dysons,
-      factories: this.factories,
-      energyToMoney: this.energyToMoney,
-      upgrades: {
-        dysonPower: this.upgrades.dysonPower.level,
-        dysonEfficiency: this.upgrades.dysonEfficiency.level,
-        factoryPower: this.upgrades.factoryPower.level,
-        factoryEfficiency: this.upgrades.factoryEfficiency.level,
-        sellCash: this.upgrades.sellCash.level,
-      },
-      factory: {
-        power: this.factory.power,
-        efficiency: this.factory.efficiency,
-        cost: this.factory.cost,
-      },
-      dyson: {
-        power: this.dyson.power,
-        efficiency: this.dyson.efficiency,
-        cost: this.dyson.cost,
-      },
-      blackMatter: this.blackMatter,
-      star: {
-        name: this.star.name,
-        mass: this.star.mass,
-        maxMass: this.star.maxMass,
-      },
-    };
+    return this;
+    // return {
+    //   money: this.money,
+    //   energy: this.energy,
+    //   dysons: this.dysons,
+    //   factories: this.factories,
+    //   energyToMoney: this.energyToMoney,
+    //   upgrades: {
+    //     dysonPower: this.upgrades.dysonPower.level,
+    //     dysonEfficiency: this.upgrades.dysonEfficiency.level,
+    //     factoryPower: this.upgrades.factoryPower.level,
+    //     factoryEfficiency: this.upgrades.factoryEfficiency.level,
+    //     sellCash: this.upgrades.sellCash.level,
+    //   },
+    //   factory: {
+    //     power: this.factory.power,
+    //     efficiency: this.factory.efficiency,
+    //     cost: this.factory.cost,
+    //   },
+    //   dyson: {
+    //     power: this.dyson.power,
+    //     efficiency: this.dyson.efficiency,
+    //     cost: this.dyson.cost,
+    //   },
+    //   blackMatter: this.blackMatter,
+    //   star: {
+    //     name: this.star.name,
+    //     mass: this.star.mass,
+    //     maxMass: this.star.maxMass,
+    //   },
+    // };
   }
   load(data) {
-    this.money = data.money;
-    this.energy = data.energy;
-    this.dysons = data.dysons;
-    this.factories = data.factories;
-    this.energyToMoney = data.energyToMoney;
+    const loadVal = (v, alt = 0) => {
+      return v !== undefined ? v : alt;
+    };
+    this.money = loadVal(data.money, 10);
+    this.energy = loadVal(data.energy);
+    // this.dysons = loadVal(data.dysons);
+    // this.factories = loadVal(data.factories);
+    this.energyToMoney = loadVal(data.energyToMoney, 100);
     for (let i in this.upgrades) {
-      this.upgrades[i].level = data.upgrades[i];
+      this.upgrades[i].level = loadVal(data.upgrades[i].level, 0);
     }
-    this.factory = data.factory;
-    this.dyson = data.dyson;
-    this.blackMatter = data.blackMatter;
-    this.star = new Star(data.star.name, data.star.mass, data.star.maxMass);
+    this.factory = loadVal(data.factory, {
+      power: 1,
+      efficiency: 1,
+    });
+    this.dyson = loadVal(data.dyson, {
+      power: 1,
+      efficiency: 1,
+    });
+    // this.notation = data.notation;
+    this.blackMatter = loadVal(data.blackMatter);
+    this.probes = loadVal(data.probes, 1);
+    if (!data.star) {
+      for (let i in data.stars) {
+        this.stars[i] = new Star(
+          data.stars[i].name,
+          data.stars[i].mass,
+          data.stars[i].maxMass,
+          data.stars[i].multiplier,
+          data.stars[i].alpha
+        );
+      }
+    } else {
+      this.stars[0] = new Star(
+        data.star.name,
+        data.star.mass,
+        data.stars.maxMass,
+        this.starTypes.normal.multiplier,
+        this.starTypes.normal.alpha
+      );
+    }
   }
   unfocus() {
     this.offTabTime = Date.now();

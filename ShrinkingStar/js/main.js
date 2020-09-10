@@ -1,3 +1,4 @@
+const GAME_VESRION = "v1.04"
 let game = new Player();
 if (localStorage.getItem("ShrinkingStarGame")) {
   game.load(JSON.parse(localStorage.getItem("ShrinkingStarGame")));

@@ -54,6 +54,7 @@ const update = () => {
   let toDisplay = [
     ["starName", game.stars[game.currentStar].name],
     ["starMass", game.stars[game.currentStar].mass],
+    ["starDensity", game.stars[game.currentStar].multiplier.energy,0],
     ["starSize", game.stars[game.currentStar].getSize() * 100, 2],
     ["energy", game.energy, 0],
     ["money", game.money, 2],
