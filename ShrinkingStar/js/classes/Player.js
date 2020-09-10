@@ -136,7 +136,15 @@ class Player {
   buyProbe() {
     if (this.money >= this.probe.cost) {
       this.probes++;
-      this.newStar(this.stars.length);
+      this.stars.push(
+        new Star(
+          this.randomName(),
+          Math.log(this.stars.length * 1e9),
+          Math.log(this.stars.length * 1e9),
+          this.starTypes.normal.multiplier,
+          this.starTypes.normal.alpha
+        )
+      );
       this.currentStar = this.stars.length - 1;
       this.stars.length == 2
         ? alert(
