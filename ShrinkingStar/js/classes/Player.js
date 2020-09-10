@@ -322,6 +322,9 @@ class Player {
           data.stars[i].multiplier,
           data.stars[i].alpha
         );
+        this.stars[i].dysons = data.stars[i].dysons;
+        this.stars[i].factories = data.stars[i].factories;
+        this.stars[i].cost = data.stars[i].cost;
       }
     } else {
       this.stars[0] = new Star(
