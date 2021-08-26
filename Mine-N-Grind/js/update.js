@@ -56,15 +56,15 @@ function updateView() {
       disable("vaultbuy");
       setCostValue(
         "vaultbuy",
-        data.mines[game.area+1][0].name,
-        data.mines[game.area+1][0].cost
+        data.vaults[game.area+1][0].name,
+        data.vaults[game.area+1][0].cost
       );
     } else {
       enable("minebuy")
       setCostValue(
         "vaultbuy",
-        data.mines[game.area][game.mines.next].name,
-        data.mines[game.area][game.mines.next].cost
+        data.vaults[game.area][game.mines.next].name,
+        data.vaults[game.area][game.mines.next].cost
       );
     }
     document.getElementById("vault").value = game.ore;
