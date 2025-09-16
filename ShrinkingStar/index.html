@@ -34,7 +34,7 @@
   <link rel="icon" href="favicon.ico" />
   <!-- CSS FILES -->
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="preload stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/slider.css" />
   <link rel="stylesheet" type="text/css" href="css/scrollbar.css" />
   <!-- JAVASCRIPT -->
@@ -50,11 +50,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
   <script src="js/save.js"></script>
   <script src="js/classes/StarType.js"></script>
+  <script src="js/classes/SkillDot.js"></script>
   <script src="js/classes/Upgrade.js"></script>
   <script src="js/classes/Star.js"></script>
   <script src="js/classes/Player.js"></script>
   <script src="js/display.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/canvas.js" defer></script>
+  <script src="js/main.js" defer></script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script
     async
@@ -74,6 +77,7 @@
   <ul id="navBar">
     <li onclick="goTo('main')" >main</li>
     <li onclick="goTo('options')">options</li>
+    <li onclick="goTo('ascension')" class="superShine">ascension</li>
   </ul>
   <div id="main" class="section">
   <div id="leftWing">
@@ -123,11 +127,6 @@
       <p id="starMass">mass: <span class="^starMass">-</span> ​ ​​  density: <span class="^starDensity">-</span></p>
     </div>
     <div id="star"></div>
-  </div>
-  <div id="ascendContainer">
-    <canvas id="ascend">
-
-    </canvas>
   </div>
   <div id="rightWing">
     <div id="selling">
@@ -205,7 +204,7 @@
     </div>
   </div>
   </div>
-  <div id="options">
+  <div id="options" class="section">
     <div id="notation">
     <h1 class="shine">
       notation
@@ -221,7 +220,13 @@
   </div>
   
   </div>
+  <div id="ascension" class="section">
+    <canvas id="ascensionCanvas">
+
+    </canvas>
+  </div>
   <div style="position: absolute; bottom: 0;">
-    <a href="https://discord.gg/dkxKvdv">join me on discord</a>
+    <a href="https://discord.gg/dkxKvdv" target="_blank">join me on discord</a> <a href="placeinspace.txt" target="_blank" style="text-decoration: none">•</a> 
+    <!-- Make placeinspace a html file -->
   </div>
 </body>

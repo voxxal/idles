@@ -105,7 +105,7 @@ const update = () => {
   }
   displayValue(
     dge.byClassName("title"),
-    `Shrinking Star - ${game.energy} Energy`
+    `Shrinking Star - ${game.notation.format(game.energy)} Energy`
   );
   editAttrabute(
     dge.byId("star"),

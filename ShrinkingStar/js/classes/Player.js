@@ -1,4 +1,4 @@
-class Player {
+class Player { //make a function file instead
   constructor() {
     let root = this;
     this.starTypes = {
@@ -6,6 +6,7 @@ class Player {
       compact: new StarType(0.2, [0, 0, 1], { mass: 1, energy: 2 }),
       small: new StarType(0.3, [1, 0, 0], { mass: 0.5, energy: 1 }),
     };
+    this.ascensionUpgrades = {};
     this.notation = new ADNotations.StandardNotation();
     this.energy = 0;
     this.money = 10;
@@ -139,8 +140,8 @@ class Player {
       this.stars.push(
         new Star(
           this.randomName(),
-          Math.log(this.stars.length * 1e9),
-          Math.log(this.stars.length * 1e9),
+          Math.log2(this.stars.length * 1e9),
+          Math.log2(this.stars.length * 1e9),
           this.starTypes.normal.multiplier,
           this.starTypes.normal.alpha
         )
@@ -317,6 +318,9 @@ class Player {
     this.dyson = loadVal(data.dyson, {
       power: 1,
       efficiency: 1,
+    });
+    this.probe = loadVal(data.probe, {
+      cost: 1e7,
     });
     // this.notation = data.notation;
     this.blackMatter = loadVal(data.blackMatter);

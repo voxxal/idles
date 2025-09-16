@@ -34,9 +34,14 @@ ul {
 }
 li {
   display: inline;
+  cursor: pointer;
   margin:0.5px;
   padding: 0 25px;
   transition: 200ms;
+}
+li:hover {
+  background:white;
+  color:black;
 }
 #blackMatter {
   color: black;

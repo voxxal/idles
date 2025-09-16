@@ -1,0 +1,16 @@
+:root {
+  --background: white;
+  --text: black;
+  --secondary: grey;
+}
+body {
+  transition: 200ms;
+  background: var(--background);
+}
+button {
+  border: 2px solid var(--text);
+  background: var()
+}
+button:disabled {
+  border: 2px solid var(--secondary);
+}

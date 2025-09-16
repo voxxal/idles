@@ -12,6 +12,7 @@ function goTo(element) {
 }
 setInterval("update()", 50);
 setInterval("save(game.save(),'ShrinkingStarGame')", 5000);
+ascensionCanvas();
 /**
  * @license
  * voxalMakesGames (c) 2020
